@@ -1,18 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using PathCreation;
 using UnityEngine;
 
 public class PathManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] PathCreator startPath;
+    public AgentController agent;
 
-    // Update is called once per frame
-    void Update()
+    [ContextMenu("Function/Test")]
+    void test()
     {
-        
+        agent.ChangePath(startPath);
     }
 }
