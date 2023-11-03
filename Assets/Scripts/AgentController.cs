@@ -11,6 +11,7 @@ public class AgentController : MonoBehaviour
     PathCheckpoint currentPathCheck;
     bool endingPath = false;
     public float jumpSpeed = 0.05f;
+    bool isDeath = false;
 
     void Update()
     {
@@ -23,7 +24,7 @@ public class AgentController : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, pathPoint[index], 0.05f);
+            transform.position = Vector3.MoveTowards(transform.position, pathPoint[index], jumpSpeed);
             if (transform.position == pathPoint[index])
             {
                 NextDestination();
@@ -46,6 +47,12 @@ public class AgentController : MonoBehaviour
             if (endingPath == false)
             {
                 ChangePath(currentPathCheck.nextPath[GetPathIndex()].pathCheck);
+            }else
+            {
+                if (isDeath)
+                {
+                    Destroy(this.gameObject);
+                }
             }
         }
     }
@@ -109,6 +116,12 @@ public class AgentController : MonoBehaviour
 
             case PathType.JUMP:
                 SetMoveWithoutNavMesh();
+                break;
+
+            case PathType.DEATH:
+                SetMoveWithoutNavMesh();
+                endingPath = true;
+                isDeath = true;
                 break;
         }
     }

@@ -1,10 +1,14 @@
-using PathCreation;
+using System.Collections;
 using UnityEngine;
 
 public class PathManager : MonoBehaviour
 {
-    public AgentController agent;
+    public GameObject agent;
+    public int nmbOfAgent;
     public PathCheckpoint startPath;
+    public GameObject spawnPoint;
+    int agentsInstantiate = 0;
+    public float timeBtwAgent = 1;
 
     public static PathManager instance;
 
@@ -13,9 +17,25 @@ public class PathManager : MonoBehaviour
         instance = this;
     }
 
-    [ContextMenu("Function/Test")]
-    void test()
+    void Start()
     {
-        agent.ChangePath(startPath);
+        SpawnAgent();
+    }
+
+    void SpawnAgent()
+    {
+        agentsInstantiate++;
+        GameObject obj = Instantiate(agent, spawnPoint.transform.position, Quaternion.identity);
+        obj.GetComponent<AgentController>()?.ChangePath(startPath);
+        StartCoroutine(WaitNextAgent());
+    }
+
+    IEnumerator WaitNextAgent()
+    {
+        yield return new WaitForSeconds(timeBtwAgent);
+        if (agentsInstantiate < nmbOfAgent)
+        {
+            SpawnAgent();
+        }
     }
 }
