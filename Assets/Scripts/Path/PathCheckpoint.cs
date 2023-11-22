@@ -1,12 +1,77 @@
 using System;
+using System.Collections.Generic;
 using PathCreation;
 using PathSystem;
 using UnityEngine;
+using UnityEngine.Splines;
 
-[ExecuteInEditMode, RequireComponent(typeof(PathCreator))]
+public enum PathType
+{
+    Walk,
+    Jump,
+    Swim,
+    Fall,
+    Fly,
+    Elevator,
+    Ladder,
+    None
+}
+
+[RequireComponent(typeof(SplineContainer))]
 public class PathCheckpoint : MonoBehaviour
 {
-    [Serializable]
+    [SerializeField]
+    public PathType type;
+
+    SplineContainer spline;
+
+    [SerializeField]
+    int numberOfPosInSpline = 30;
+
+    public int importanceOfPath;
+
+    [SerializeField]
+    List<PathCheckpoint> checkpointList = new List<PathCheckpoint>();
+
+    public bool canTake = true;
+
+    private void Awake()
+    {
+        spline = GetComponent<SplineContainer>();
+    }
+
+    public SplineContainer GetSpline()
+    {
+        return spline;
+    }
+
+    public Vector3 GetNextPos(float currentProgress , out float percentOfProgress)
+    {
+        float percentForOnePos = 1f/numberOfPosInSpline;
+        percentOfProgress = Math.Clamp(currentProgress + percentForOnePos, 0, 1);
+        return spline.EvaluatePosition(Math.Clamp(currentProgress, 0 , 1)); // clamp value because it' only between 0 and 1
+    }
+
+    public PathCheckpoint GetNextPathCheckpoint()
+    {
+
+        Debug.Log("get new checkpoint");
+        PathCheckpoint newCheckpoint = null;
+
+        foreach (var item in checkpointList)
+        {
+            if (!newCheckpoint)
+                newCheckpoint = item;
+            else
+            {
+                if(item.importanceOfPath > newCheckpoint.importanceOfPath && item.canTake)
+                    newCheckpoint = item;
+            }
+        }
+        return newCheckpoint;
+    }
+
+    /*[Serializable]
     public class NextPath
     {
         [HideInInspector] public string Name;
@@ -61,5 +126,5 @@ public class PathCheckpoint : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 }

@@ -11,7 +11,9 @@ public class Digicode : MonoBehaviour
     [SerializeField]
     List<SimpleButton> buttons;
 
-    List<int> buttonsOrder = new List<int>();
+
+    [SerializeField]
+    List<int> buttonsOrder;
     List<int> currentButtonsOrder = new List<int>();
 
     public UnityEvent ResetSelection , CodeSuccessfull , SuccefullTouch;
@@ -37,6 +39,7 @@ public class Digicode : MonoBehaviour
 
     void OnButtonClicked(int id)
     {
+        Debug.Log("button clicked : " + id);
         UpdateButtonsClicked(id);
     }
 
@@ -45,6 +48,7 @@ public class Digicode : MonoBehaviour
         currentButtonsOrder.Add(id);
         if(isOrderCorrect())
         {
+            Debug.Log("correct order : " + buttonsOrder[0]);
             SuccefullTouch.Invoke();
             if (IsOrderFinished())
             {
@@ -66,10 +70,12 @@ public class Digicode : MonoBehaviour
 
     bool isOrderCorrect()
     {
-        for(int i = 0;i < currentButtonsOrder.Count;i++)
+        for(int i = 0;i < currentButtonsOrder.Count ;i++)
         {
+            Debug.Log(currentButtonsOrder[i] + " -- " + buttonsOrder[i]);
             if (currentButtonsOrder[i] != buttonsOrder[i])
             {
+                Debug.Log("not good");
                 return false;
             }
         }

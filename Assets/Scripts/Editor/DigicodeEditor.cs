@@ -46,6 +46,11 @@ public class DigicodeEditor : Editor
     public void UpdateButtonsOrder(Digicode digi)
     {
         digi.SetNewOrder(codeTemplate);
+        Debug.Log("new order : " );
+        foreach (var item in codeTemplate)
+        {
+            Debug.Log(item);
+        }
     }
 
     public override void OnInspectorGUI()
@@ -90,6 +95,7 @@ public class DigicodeEditor : Editor
         if (GUILayout.Button("Reset"))
         {
             ClearButtons();
+            UpdateButtonsOrder(gridButtons);
         }
         GUILayout.FlexibleSpace(); // Ajoute un espace flexible à droite
 

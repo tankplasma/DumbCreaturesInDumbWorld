@@ -50,7 +50,8 @@ public class TranslateObject : MonoBehaviour, IMovable
         Gizmos.color = Color.red;
         if (movingPart)
         {
-            Gizmos.DrawLine(transform.position, GetFinalPointTranslateWay());
+            Vector3 finalPos = GetFinalPointTranslateWay();
+            Gizmos.DrawLine(transform.position, finalPos);
         }
 
     }
@@ -99,7 +100,7 @@ public class TranslateObject : MonoBehaviour, IMovable
     public Vector3 GetFinalPointTranslateWay()
     {
         Vector3 dir = (movingPart.position - transform.position).normalized;
-        return transform.position + (dir * translateMaxAmount);
+        return transform.position+(dir * translateMaxAmount);
     }
 
     public void Select(Vector3 pos)

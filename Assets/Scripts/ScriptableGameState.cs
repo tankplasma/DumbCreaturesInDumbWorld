@@ -14,7 +14,7 @@ public class ScriptableGameState : ScriptableObject
 {
     Dictionary<PNJMain, PNJStatus> PNJsState = new Dictionary<PNJMain, PNJStatus>();
 
-    public Action OnPNJDead , OnPNJAddDico;
+    public Action<PNJMain> OnPNJDead , OnPNJAdd;
 
     public void AddPNJ(PNJMain pnj)
     {

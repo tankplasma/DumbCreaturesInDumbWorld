@@ -13,7 +13,6 @@ public class SimpleButton : MonoBehaviour
 
     bool isActivate;
 
-    [HideInInspector]
     public int ID;
 
     private void Awake()

@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 public class PNJMain : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    ScriptableGameState gameState;
 
-    // Update is called once per frame
-    void Update()
+    public void IAmDead()
     {
-        
+        gameState.ChangePNJState(this, PNJStatus.dead);
+        gameObject.SetActive(false);
     }
 }
