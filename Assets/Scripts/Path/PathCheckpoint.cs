@@ -45,6 +45,11 @@ public class PathCheckpoint : MonoBehaviour
         return spline;
     }
 
+    public Vector3 GetFirstPos()
+    {
+        return spline.EvaluatePosition(0);
+    }
+
     public Vector3 GetNextPos(float currentProgress , out float percentOfProgress)
     {
         float percentForOnePos = 1f/numberOfPosInSpline;

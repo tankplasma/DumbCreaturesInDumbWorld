@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 6060482986851856257}
   - component: {fileID: 6841703363070917214}
   - component: {fileID: 2324526194167877603}
+  - component: {fileID: 2353260401384128212}
   m_Layer: 0
   m_Name: InteractableTemplate
   m_TagString: Untagged
@@ -64,7 +65,7 @@ Transform:
   - {fileID: 9029423108791466970}
   - {fileID: 7528902203682260489}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6841703363070917214
 MonoBehaviour:
@@ -106,6 +107,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2353260401384128212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9204806037069579694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 6
+  precomputeOutline: 1
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &8523091334707136826
 PrefabInstance:
   m_ObjectHideFlags: 0

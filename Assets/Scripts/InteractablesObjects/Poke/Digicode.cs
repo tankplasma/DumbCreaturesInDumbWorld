@@ -11,9 +11,7 @@ public class Digicode : MonoBehaviour
     [SerializeField]
     List<SimpleButton> buttons;
 
-
-    [SerializeField]
-    List<int> buttonsOrder;
+    public List<int> buttonsOrder;
     List<int> currentButtonsOrder = new List<int>();
 
     public UnityEvent ResetSelection , CodeSuccessfull , SuccefullTouch;

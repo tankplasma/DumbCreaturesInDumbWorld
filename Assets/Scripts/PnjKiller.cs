@@ -13,6 +13,18 @@ public class PnjKiller : MonoBehaviour
                 main.IAmDead();
             }
         }
+    }
 
-    }   
+/*    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Break();
+
+        if (collision.gameObject.tag == "Dumb")
+        {
+            if (collision.gameObject.TryGetComponent<PNJMain>(out PNJMain main))
+            {
+                main.IAmDead();
+            }
+        }
+    }*/
 }

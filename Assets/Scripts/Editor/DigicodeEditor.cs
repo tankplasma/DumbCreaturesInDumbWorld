@@ -43,9 +43,8 @@ public class DigicodeEditor : Editor
         codeTemplate.Clear();
     }
 
-    public void UpdateButtonsOrder(Digicode digi)
+    public void UpdateButtonsOrder(Digicode serializedObject)
     {
-        digi.SetNewOrder(codeTemplate);
         Debug.Log("new order : " );
         foreach (var item in codeTemplate)
         {
@@ -56,6 +55,11 @@ public class DigicodeEditor : Editor
     public override void OnInspectorGUI()
     {
         Digicode gridButtons = (Digicode)target;
+
+        SerializedObject serializedObject = new UnityEditor.SerializedObject(gridButtons);
+
+       
+
         float size = totalSize / gridButtons.digicodeSize;
 
         int Count = 0;
