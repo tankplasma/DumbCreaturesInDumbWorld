@@ -11,7 +11,7 @@ public class TerrainCreator : MonoBehaviour
 
     private MeshFilter meshFilter;
 
-    void Start() 
+    void Start()
     {
         GenerateCircleWithHole();
     }
@@ -26,6 +26,7 @@ public class TerrainCreator : MonoBehaviour
 
     void GenerateCircleWithHole()
     {
+        meshFilter = GetComponent<MeshFilter>();
         Mesh mesh = new Mesh();
         meshFilter.mesh = mesh;
 
