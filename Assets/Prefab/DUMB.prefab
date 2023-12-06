@@ -54,7 +54,7 @@ MonoBehaviour:
   walkSpeed: 0.3
   gravity: -9.81
   debug: 1
-  canWalk: 1
+  animator: {fileID: 0}
 --- !u!136 &4891751026844683218
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -75,9 +75,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.26
-  m_Height: 2.34
+  m_Height: 1.88
   m_Direction: 1
-  m_Center: {x: 0.008169904, y: 1.1061978, z: -0.06571826}
+  m_Center: {x: 0.008169904, y: 0.82, z: -0.06571826}
 --- !u!114 &-2509877726562624615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b29f3284cce08324baf65bad5ab6daac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 7447230869826882589}
   walk: Walk
   jump: 
   beginJump: 
@@ -200,5 +200,10 @@ PrefabInstance:
 --- !u!4 &2369384540980933451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4371813501252438353, guid: f8b384faa40f5d647b3afdef95e8806c, type: 3}
+  m_PrefabInstance: {fileID: 2038568881551899162}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7447230869826882589 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8868593290191713799, guid: f8b384faa40f5d647b3afdef95e8806c, type: 3}
   m_PrefabInstance: {fileID: 2038568881551899162}
   m_PrefabAsset: {fileID: 0}

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AnimType
+public enum EAnimType
 {
     Walk,
     Jump,
@@ -27,8 +27,18 @@ public class AgentAnimator : MonoBehaviour
     [SerializeField]
     string swim;
 
-    public void ChangeAnimState(AnimType type)
+    public void ChangeAnimState(EAnimType type)
     {
 
+    }
+
+    private void OnAnimatorIK(int layerIndex)
+    {
+        animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0);
+    }
+
+    public void SetMemberPositionTo(AvatarIKGoal type , Vector3 pos)
+    {
+        animator.SetIKPosition(type, pos);
     }
 }

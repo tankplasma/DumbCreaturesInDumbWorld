@@ -26,14 +26,17 @@ public class AgentController : MonoBehaviour
 
     public bool debug;
 
+    Transform rightShoulder, leftShoulder , lLowerLeg , rLowerLeg;
+
     [SerializeField]
-    bool canWalk;
+    AgentAnimator animator;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         currentCheckpoint = PathManager.instance.BegininPath;
         StartNewPath();
+        
     }
 
     void StartNewPath()
@@ -81,6 +84,11 @@ public class AgentController : MonoBehaviour
         rb.velocity = Direction * currentSpeed;
     }
 
+    void ClimbToPoint()
+    {
+
+    }
+
     private void OnDrawGizmos()
     {
         if (debug)
@@ -115,7 +123,7 @@ public class AgentController : MonoBehaviour
             case PathType.Elevator:
                 break;
             case PathType.Ladder:
-                break;
+                return isLadderPointReach();
         }
         return false;
     }
@@ -137,6 +145,13 @@ public class AgentController : MonoBehaviour
             return true;
         else 
             return false;
+    }
+
+    bool isLadderPointReach()
+    {
+        if (transform.position.y > nextPoint.y)
+            return true;
+        return false;
     }
 
     #endregion
@@ -179,11 +194,40 @@ public class AgentController : MonoBehaviour
             }
             
             TurnToPoint(false);
-            if(canWalk)
-                GoToPoint();
+
+            GoToPoint();
             yield return new WaitForEndOfFrame();
         }
         LastPointOfPathReached();
+    }
+    #endregion
+
+    #region ClimbLadder
+    IEnumerator ProcessClimbLadder()
+    {
+        LadderPathCheckpoint lpc = (LadderPathCheckpoint)currentCheckpoint;
+
+        while (currentProgress < 1)
+        {
+            if (nextPoint == Vector3.zero)
+            {
+                nextPoint = GetNextPos();
+            }
+
+            ClimbToPoint();
+            ControllIkThreshold(lpc);
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    void ControllIkThreshold(LadderPathCheckpoint lpc)
+    {
+        //get closer position from members
+        animator.SetMemberPositionTo(AvatarIKGoal.RightHand ,lpc.GetCloserPointOfHeight(rightShoulder.position.y));
+        animator.SetMemberPositionTo(AvatarIKGoal.LeftHand , lpc.GetCloserPointOfHeight(leftShoulder.position.y));
+        animator.SetMemberPositionTo(AvatarIKGoal.RightFoot , lpc.GetCloserPointOfHeight(rLowerLeg.position.y));
+        animator.SetMemberPositionTo(AvatarIKGoal.LeftFoot , lpc.GetCloserPointOfHeight(lLowerLeg.position.y));
     }
     #endregion
 

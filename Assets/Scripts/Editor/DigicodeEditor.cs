@@ -58,8 +58,6 @@ public class DigicodeEditor : Editor
 
         SerializedObject serializedObject = new UnityEditor.SerializedObject(gridButtons);
 
-       
-
         float size = totalSize / gridButtons.digicodeSize;
 
         int Count = 0;
