@@ -17,11 +17,12 @@ public class TranslateObject : MonoBehaviour, IMovable
 
     Vector3 initialHandPosition = Vector3.zero;
 
-    Vector3 initialPos = Vector3.zero;
+    float initialPosMagniturde = 0;
 
     private void Start()
     {
-        initialPos = movingPart.position;
+        initialPosMagniturde = (movingPart.position - transform.position).magnitude;
+        Debug.Log(initialPosMagniturde);
     }
 
     public void ProcessMoving(Vector3 position)
@@ -36,10 +37,21 @@ public class TranslateObject : MonoBehaviour, IMovable
         // Calculez la différence entre la nouvelle position et la position initiale
         Vector3 positionDifference = newPos - initialHandPosition;
 
+        Vector3 endPos = movingPart.position + positionDifference;
+
         if (initialHandPosition != Vector3.zero)
         {
             // Appliquez cette différence à la position de movingPart
-            movingPart.position += positionDifference;
+
+            if ((endPos - transform.position).magnitude > initialPosMagniturde)
+            {
+                Debug.Log((endPos - transform.position).magnitude);
+                movingPart.position = endPos;
+            }
+            if ((endPos - transform.position).magnitude < (GetFinalPointTranslateWay() - transform.position).magnitude)
+            {
+                movingPart.position = endPos;
+            }
         }
 
         initialHandPosition = newPos;
@@ -51,7 +63,7 @@ public class TranslateObject : MonoBehaviour, IMovable
         if (movingPart)
         {
             Vector3 finalPos = GetFinalPointTranslateWay();
-            Gizmos.DrawLine(transform.position, finalPos);
+            Gizmos.DrawLine(movingPart.position, finalPos);
         }
 
     }
@@ -73,7 +85,7 @@ public class TranslateObject : MonoBehaviour, IMovable
         Vector3 intersectionPoint = transform.position + perp;
         
         // Calculez le vecteur de déplacement d'intersection par rapport à A et B
-        Vector3 displacementFromA = intersectionPoint - initialPos;
+        Vector3 displacementFromA = intersectionPoint - transform.position;
         Vector3 displacementFromB = intersectionPoint - finalPoint;
 
         if (Vector3.Dot(displacementFromA, translateDir) > 0 && Vector3.Dot(displacementFromB, -translateDir) > 0)
@@ -84,8 +96,7 @@ public class TranslateObject : MonoBehaviour, IMovable
         // Vérifiez si le point d'intersection dépasse le point A
         else if (Vector3.Dot(displacementFromA, -translateDir) > 0)
         {
-            Debug.Log(transform.position);
-            return initialPos;
+            return transform.position;
         }
 
         // Vérifiez si le point d'intersection dépasse le point B

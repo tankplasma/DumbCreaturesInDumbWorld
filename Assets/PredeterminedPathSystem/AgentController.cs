@@ -243,11 +243,11 @@ public class AgentController : MonoBehaviour
         Vector3 rightHandPos = lpc.GetCloserPointOfHeight(rightShoulder.position);
         animator.SetMemberPositionTo(AvatarIKGoal.RightHand, rightHandPos);
         Vector3 leftHandPos = lpc.GetCloserPointOfHeight(leftShoulder.position);
-            animator.SetMemberPositionTo(AvatarIKGoal.LeftHand, leftHandPos);
+        animator.SetMemberPositionTo(AvatarIKGoal.LeftHand, leftHandPos);
         Vector3 rightFootPos = lpc.GetCloserPointOfHeight(rLowerLeg.position);
         animator.SetMemberPositionTo(AvatarIKGoal.RightFoot, rightFootPos);
         Vector3 leftFootPos = lpc.GetCloserPointOfHeight(lLowerLeg.position);
-            animator.SetMemberPositionTo(AvatarIKGoal.LeftFoot, leftFootPos);
+        animator.SetMemberPositionTo(AvatarIKGoal.LeftFoot, leftFootPos);
     }
     #endregion
 

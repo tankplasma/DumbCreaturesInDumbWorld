@@ -44,7 +44,6 @@ public class AgentAnimator : MonoBehaviour
         IKRig.weight = weight;
     }
 
-
     public void SetMemberPositionTo(AvatarIKGoal type , Vector3 pos)
     {
         switch (type)
