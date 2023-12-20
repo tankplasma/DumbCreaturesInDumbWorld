@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DumbController : MonoBehaviour
 {
-    PathCheckpoint path = null;
+    IPath path = null;
 
     bool useGravity;
 

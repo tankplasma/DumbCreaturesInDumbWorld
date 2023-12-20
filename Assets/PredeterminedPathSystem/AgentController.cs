@@ -12,7 +12,7 @@ using UnityEditor;
 [RequireComponent(typeof(Rigidbody))]
 public class AgentController : MonoBehaviour
 {
-    PathCheckpoint currentCheckpoint;
+    IPath currentCheckpoint;
 
     float currentProgress;
 
@@ -26,6 +26,7 @@ public class AgentController : MonoBehaviour
 
     public bool debug;
 
+    [SerializeField]
     Transform rightShoulder, leftShoulder , lLowerLeg , rLowerLeg;
 
     [SerializeField]
@@ -41,7 +42,7 @@ public class AgentController : MonoBehaviour
 
     void StartNewPath()
     {
-        switch (currentCheckpoint.type)
+        switch (currentCheckpoint.Type)
         {
             case PathType.Walk:
                 currentSpeed = walkSpeed;
@@ -60,6 +61,8 @@ public class AgentController : MonoBehaviour
             case PathType.Elevator:
                 break;
             case PathType.Ladder:
+                currentSpeed = walkSpeed/2;
+                StartCoroutine(ProcessClimbLadder());
                 break;
             case PathType.None:
                 break;
@@ -86,7 +89,8 @@ public class AgentController : MonoBehaviour
 
     void ClimbToPoint()
     {
-
+        Vector3 Direction = (nextPoint - transform.position).normalized;
+        rb.velocity = Direction * currentSpeed;
     }
 
     private void OnDrawGizmos()
@@ -166,7 +170,7 @@ public class AgentController : MonoBehaviour
             {
                 nextPoint = GetNextPos();
             }
-            if (CheckIfPointIsReached(currentCheckpoint.type))
+            if (CheckIfPointIsReached(currentCheckpoint.Type))
             {
                 nextPoint = GetNextPos();
             }
@@ -188,7 +192,7 @@ public class AgentController : MonoBehaviour
             {
                nextPoint = GetNextPos();
             }
-            else if (CheckIfPointIsReached(currentCheckpoint.type))
+            else if (CheckIfPointIsReached(currentCheckpoint.Type))
             {
                 nextPoint = GetNextPos();
             }
@@ -205,29 +209,47 @@ public class AgentController : MonoBehaviour
     #region ClimbLadder
     IEnumerator ProcessClimbLadder()
     {
-        LadderPathCheckpoint lpc = (LadderPathCheckpoint)currentCheckpoint;
+
+        rb.useGravity = false;
+        animator.SetIKWeight(1);
+
+        LadderPathCheckpoint lpc = currentCheckpoint as LadderPathCheckpoint;
 
         while (currentProgress < 1)
         {
             if (nextPoint == Vector3.zero)
             {
                 nextPoint = GetNextPos();
+                TurnToPoint(false);
+            }
+            else if (CheckIfPointIsReached(currentCheckpoint.Type))
+            {
+                nextPoint = GetNextPos();
             }
 
             ClimbToPoint();
+
             ControllIkThreshold(lpc);
 
             yield return new WaitForEndOfFrame();
         }
+
+        rb.useGravity = true;
+        animator.SetIKWeight(0);
     }
 
     void ControllIkThreshold(LadderPathCheckpoint lpc)
     {
-        //get closer position from members
-        animator.SetMemberPositionTo(AvatarIKGoal.RightHand ,lpc.GetCloserPointOfHeight(rightShoulder.position.y));
-        animator.SetMemberPositionTo(AvatarIKGoal.LeftHand , lpc.GetCloserPointOfHeight(leftShoulder.position.y));
-        animator.SetMemberPositionTo(AvatarIKGoal.RightFoot , lpc.GetCloserPointOfHeight(rLowerLeg.position.y));
-        animator.SetMemberPositionTo(AvatarIKGoal.LeftFoot , lpc.GetCloserPointOfHeight(lLowerLeg.position.y));
+        Vector3 rightHandPos = lpc.GetCloserPointOfHeight(rightShoulder.position);
+        animator.SetMemberPositionTo(AvatarIKGoal.RightHand, rightHandPos);
+        Vector3 leftHandPos = lpc.GetCloserPointOfHeight(leftShoulder.position);
+        if(leftHandPos.y != rightHandPos.y)
+            animator.SetMemberPositionTo(AvatarIKGoal.LeftHand, leftHandPos);
+        Vector3 rightFootPos = lpc.GetCloserPointOfHeight(rLowerLeg.position);
+        animator.SetMemberPositionTo(AvatarIKGoal.RightFoot, rightFootPos);
+        Vector3 leftFootPos = lpc.GetCloserPointOfHeight(lLowerLeg.position);
+        if (leftFootPos.y != rightFootPos.y)
+            animator.SetMemberPositionTo(AvatarIKGoal.LeftFoot, leftFootPos);
     }
     #endregion
 
@@ -242,7 +264,7 @@ public class AgentController : MonoBehaviour
         currentProgress = 0;
 
         GetNewCheckpoint();
-        if (currentCheckpoint)
+        if (currentCheckpoint != null)
             StartNewPath();
         else
             print("no more checkpoints");
@@ -250,7 +272,7 @@ public class AgentController : MonoBehaviour
 
     void GetNewCheckpoint()
     {
-        if (currentCheckpoint)
+        if (currentCheckpoint != null)
             currentCheckpoint = currentCheckpoint.GetNextPathCheckpoint();
     }
 }

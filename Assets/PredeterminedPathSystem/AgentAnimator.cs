@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public enum EAnimType
 {
@@ -17,6 +18,12 @@ public class AgentAnimator : MonoBehaviour
     Animator animator;
 
     [SerializeField]
+    Rig IKRig;
+
+    [SerializeField]
+    Transform rightHandPoint , leftHandPoint , rightFootPoint, leftFootPoint;
+
+    [SerializeField]
     string walk;
     [SerializeField]
     string jump;
@@ -31,14 +38,29 @@ public class AgentAnimator : MonoBehaviour
     {
 
     }
-
-    private void OnAnimatorIK(int layerIndex)
-    {
-        animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 0);
+    
+    public void SetIKWeight(float weight) 
+    { 
+        IKRig.weight = weight;
     }
+
 
     public void SetMemberPositionTo(AvatarIKGoal type , Vector3 pos)
     {
-        animator.SetIKPosition(type, pos);
+        switch (type)
+        {
+            case AvatarIKGoal.LeftFoot:
+                leftFootPoint.position = pos;
+                break;
+            case AvatarIKGoal.RightFoot:
+                rightFootPoint.position = pos;
+                break;
+            case AvatarIKGoal.LeftHand:
+                leftHandPoint.position = pos;
+                break;
+            case AvatarIKGoal.RightHand:
+                rightHandPoint.position = pos;
+                break;
+        }
     }
 }

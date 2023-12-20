@@ -1,5 +1,7 @@
+using log4net.Util;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
@@ -14,10 +16,34 @@ public class LadderPathEditor : Editor
     {
         LadderPathCheckpoint checkpoint = (LadderPathCheckpoint)target;
 
-        for (int i = 0;i < checkpoint.anchors.Count; i++)
+        if (!checkpoint.showAnchors)
+            return;
+
+        Vector3 anchor = Handles.PositionHandle(checkpoint.transform.position + checkpoint.BottomLadder, Quaternion.identity);
+        checkpoint.BottomLadder = checkpoint.transform.InverseTransformPoint(anchor);
+
+        CalculatePoints(checkpoint);
+    }
+
+    void CalculatePoints(LadderPathCheckpoint ladder)
+    {
+        List<Vector3> points = Enumerable.Repeat(Vector3.zero, ladder.numberOfBars).ToList();
+
+        for (int i = 0; i < points.Count; i++)
         {
-            Vector3 newAnchor = Handles.PositionHandle(checkpoint.transform.position + checkpoint.anchors[i], Quaternion.identity);
-            checkpoint.anchors[i] = checkpoint.transform.InverseTransformPoint(newAnchor);
+            float height = ladder.heightOfFirstBar + ladder.rangeBetweenBars *i;
+
+            Vector3 rightPoint = new Vector3(0 , height , 0) + ladder.BottomLadder;
+            Vector3 leftPoint = rightPoint;
+
+            points[i] = rightPoint;
+
+            rightPoint.z = ladder.BottomLadder.z + ladder.spaceBetweenPointOfBar /2;
+            leftPoint.z = ladder.BottomLadder.z - ladder.spaceBetweenPointOfBar / 2;
+
+            Handles.DrawLine(ladder.transform.TransformPoint(rightPoint), ladder.transform.TransformPoint(leftPoint));
         }
+
+        ladder.anchors = points;
     }
 }

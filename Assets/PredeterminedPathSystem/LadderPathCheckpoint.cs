@@ -4,21 +4,43 @@ using UnityEngine;
 
 public class LadderPathCheckpoint : PathCheckpoint
 {
+    public bool showAnchors;
+
     public List<Vector3> anchors = new List<Vector3>();
 
-    public Vector3 GetCloserPointOfHeight(float height)
+    public Vector3 BottomLadder;
+
+    [SerializeField]
+    [Range(0f, 0.1f)]
+    public float rangeBetweenBars, spaceBetweenPointOfBar, heightOfFirstBar;
+
+    [SerializeField]
+    public int numberOfBars;
+
+    public Vector3 GetCloserPointOfHeight(Vector3 point)
     {
         Vector3 closestPoint = Vector3.zero;
 
         foreach (var anchor in anchors)
         {
-            Vector3 worldAnchor = transform.TransformPoint(anchor);
+            Vector3 worldLeftAnchor = transform.TransformPoint(
+                new Vector3(anchor.x , anchor.y , anchor.z - spaceBetweenPointOfBar/2));
 
-            float worldanchorYPosDiff = Mathf.Abs(worldAnchor.y - height);
-            float actualClosestpointYDiff = Mathf.Abs(closestPoint.y - height);
+            Vector3 worldRightAnchor = transform.TransformPoint(
+                new Vector3(anchor.x, anchor.y, anchor.z + spaceBetweenPointOfBar / 2));
 
-            if (worldanchorYPosDiff < actualClosestpointYDiff)
-                closestPoint = worldAnchor;
+            if (closestPoint == Vector3.zero)
+            {
+                closestPoint = worldLeftAnchor;
+            }
+            else if((worldLeftAnchor - point).magnitude < (closestPoint - point).magnitude)
+            {
+                closestPoint = worldLeftAnchor;
+            }
+            else if ((worldRightAnchor - point).magnitude < (closestPoint - point).magnitude)
+            {
+                closestPoint = worldRightAnchor;
+            }
         }
 
         return closestPoint;

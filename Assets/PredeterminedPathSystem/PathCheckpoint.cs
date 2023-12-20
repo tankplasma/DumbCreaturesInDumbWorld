@@ -1,9 +1,34 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using PathCreation;
 using PathSystem;
 using UnityEngine;
 using UnityEngine.Splines;
+
+
+public interface IPath
+{
+    public PathType Type { get; }
+
+    public Vector2 NodePos { get; set; }
+
+    public bool IsAvailable { get; set; }
+
+    public int Importance {  get;}
+
+    public List<MonoBehaviour> GetCheckpoints();
+
+    public void SetNewCheckpoint(MonoBehaviour path);
+
+    public void RemoveCheckpoint(MonoBehaviour path);
+
+    public void ReplaceCheckpoints(List<MonoBehaviour> paths);
+
+    public Vector3 GetNextPos(float currentProgress, out float percentOfProgress);
+
+    public IPath GetNextPathCheckpoint();
+}
 
 public enum PathType
 {
@@ -20,7 +45,7 @@ public enum PathType
 }
 
 [RequireComponent(typeof(SplineContainer))]
-public class PathCheckpoint : MonoBehaviour
+public class PathCheckpoint : MonoBehaviour , IPath
 {
     [SerializeField]
     public PathType type;
@@ -30,16 +55,31 @@ public class PathCheckpoint : MonoBehaviour
     [SerializeField]
     protected int numberOfPosInSpline = 30;
 
-    public int importanceOfPath;
+    [SerializeField]
+    public int importanceOfPath = 0;
 
     [SerializeField]
-    protected List<PathCheckpoint> checkpointList = new List<PathCheckpoint>();
+    public List<MonoBehaviour> checkpointList = new List<MonoBehaviour>();
+
+    List<IPath> paths = new List<IPath>();
 
     public bool canTake = true;
+
+    public PathType Type => type;
+
+    bool IPath.IsAvailable { get => canTake; set => canTake = value; }
+
+    public int Importance => importanceOfPath;
+
+    Vector2 nodePosition = Vector2.zero;
+
+    public Vector2 NodePos { get => nodePosition; set => nodePosition = value; }
 
     private void Awake()
     {
         spline = GetComponent<SplineContainer>();
+
+        paths = checkpointList.Cast<IPath>().ToList();
     }
 
     public SplineContainer GetSpline()
@@ -59,79 +99,98 @@ public class PathCheckpoint : MonoBehaviour
         return spline.EvaluatePosition(Math.Clamp(currentProgress, 0 , 1)); // clamp value because it' only between 0 and 1
     }
 
-    public PathCheckpoint GetNextPathCheckpoint()
+    public IPath GetNextPathCheckpoint()
     {
 
         Debug.Log("get new checkpoint");
-        PathCheckpoint newCheckpoint = null;
+        IPath newCheckpoint = null;
 
-        foreach (var item in checkpointList)
+        foreach (var item in paths)
         {
-            if (!newCheckpoint)
+            if (newCheckpoint == null)
                 newCheckpoint = item;
             else
             {
-                if(item.importanceOfPath > newCheckpoint.importanceOfPath && item.canTake)
+                if (item.Importance > newCheckpoint.Importance && item.IsAvailable)
                     newCheckpoint = item;
             }
         }
         return newCheckpoint;
     }
 
+    public void SetNewCheckpoint(MonoBehaviour path)
+    {
+        checkpointList.Add(path);
+    }
+
+    public void RemoveCheckpoint(MonoBehaviour path)
+    {
+        checkpointList.Remove(path);
+    }
+
+    public void ReplaceCheckpoints(List<MonoBehaviour> paths)
+    {
+        checkpointList = paths;
+    }
+
+    public List<MonoBehaviour> GetCheckpoints()
+    {
+        return checkpointList; 
+    }
     /*[Serializable]
-    public class NextPath
-    {
-        [HideInInspector] public string Name;
-        public PathCheckpoint pathCheck;
-    }
+public class NextPath
+{
+[HideInInspector] public string Name;
+public PathCheckpoint pathCheck;
+}
 
-    public PathType pathType;
-    public NextPath[] nextPath;
-    [HideInInspector] public PathCreator path;
-    [HideInInspector] public bool activated = false;
+public PathType pathType;
+public NextPath[] nextPath;
+[HideInInspector] public PathCreator path;
+[HideInInspector] public bool activated = false;
 
-    void Awake()
-    {
-        path = GetComponent<PathCreator>();
-    }
+void Awake()
+{
+path = GetComponent<PathCreator>();
+}
 
-    void Update()
-    {
-        if (Application.isEditor)
-        {
-            UpdateNamesInPathsList();
-        }
-    }
+void Update()
+{
+if (Application.isEditor)
+{
+  UpdateNamesInPathsList();
+}
+}
 
-    /// <summary>
-    /// Change le nom des intitulés des listes en fonction des enum choisie
-    /// </summary>
-    void UpdateNamesInPathsList()
-    {
-        if (nextPath != null)
-        {
-            for (int i = 0; i < nextPath.Length; i++)
-            {
-                nextPath[i].Name = nextPath[i].pathCheck.pathType.ToString();
-            }
-        }
-    }
+/// <summary>
+/// Change le nom des intitulés des listes en fonction des enum choisie
+/// </summary>
+void UpdateNamesInPathsList()
+{
+if (nextPath != null)
+{
+  for (int i = 0; i < nextPath.Length; i++)
+  {
+      nextPath[i].Name = nextPath[i].pathCheck.pathType.ToString();
+  }
+}
+}
 
-    public void SetNextPath(int index)
-    {
-        if (index + 1 <= nextPath.Length)
-        {
-            for (int i = 0; i < nextPath.Length; i++)
-            {
-                if (index == i)
-                {
-                    nextPath[i].pathCheck.activated = true;
-                }
-                else
-                {
-                    nextPath[i].pathCheck.activated = false;
-                }
-            }
-        }
-    }*/
+public void SetNextPath(int index)
+{
+if (index + 1 <= nextPath.Length)
+{
+  for (int i = 0; i < nextPath.Length; i++)
+  {
+      if (index == i)
+      {
+          nextPath[i].pathCheck.activated = true;
+      }
+      else
+      {
+          nextPath[i].pathCheck.activated = false;
+      }
+  }
+}
+}*/
 }
