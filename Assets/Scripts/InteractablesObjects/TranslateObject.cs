@@ -42,13 +42,8 @@ public class TranslateObject : MonoBehaviour, IMovable
         if (initialHandPosition != Vector3.zero)
         {
             // Appliquez cette différence à la position de movingPart
-
-            if ((endPos - transform.position).magnitude > initialPosMagniturde)
-            {
-                Debug.Log((endPos - transform.position).magnitude);
-                movingPart.position = endPos;
-            }
-            if ((endPos - transform.position).magnitude < (GetFinalPointTranslateWay() - transform.position).magnitude)
+            
+            if ((endPos - transform.position).magnitude > initialPosMagniturde && (endPos - transform.position).magnitude < (GetFinalPointTranslateWay() - transform.position).magnitude)
             {
                 movingPart.position = endPos;
             }
