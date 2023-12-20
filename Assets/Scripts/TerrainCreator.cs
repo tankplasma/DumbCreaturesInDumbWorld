@@ -4,8 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class TerrainCreator : MonoBehaviour
 {
-    [SerializeField] float outerRadius = 5f;
-    [SerializeField] float innerRadius = 2f;
+    [SerializeField] float outerRadius = 1f;
+    [SerializeField] float innerRadius = 0.4f;
     [SerializeField, Range(3f, 100f)] int numberOfSegments = 100;
     [SerializeField, Range(0f, 360f)] float arcDegrees = 360f;
 
