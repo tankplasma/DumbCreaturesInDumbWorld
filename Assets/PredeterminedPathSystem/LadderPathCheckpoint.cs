@@ -33,11 +33,11 @@ public class LadderPathCheckpoint : PathCheckpoint
             {
                 closestPoint = worldLeftAnchor;
             }
-            else if((worldLeftAnchor - point).magnitude < (closestPoint - point).magnitude)
+            if((worldLeftAnchor - point).magnitude < (closestPoint - point).magnitude)
             {
                 closestPoint = worldLeftAnchor;
             }
-            else if ((worldRightAnchor - point).magnitude < (closestPoint - point).magnitude)
+            if ((worldRightAnchor - point).magnitude < (closestPoint - point).magnitude)
             {
                 closestPoint = worldRightAnchor;
             }
