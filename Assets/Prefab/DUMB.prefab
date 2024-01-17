@@ -43,7 +43,7 @@ GameObject:
   m_Layer: 0
   m_Name: LefFoot_target
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -440,10 +440,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0be958f497ced041847b471141db07f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpSpeed: 0.6
+  JumpSpeed: 1
   stoppingDistance: 0.05
-  walkSpeed: 0.1
+  walkSpeed: 0.5
   gravity: -9.81
+  grindSpeed: 0.1
   debug: 1
   rightShoulder: {fileID: 6949809448362940755}
   leftShoulder: {fileID: 5536001261445883355}
@@ -548,7 +549,7 @@ GameObject:
   m_Layer: 0
   m_Name: RighFoot_target
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -579,7 +580,7 @@ GameObject:
   m_Layer: 0
   m_Name: RightHand_target
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -701,6 +702,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Characters
       objectReference: {fileID: 0}
+    - target: {fileID: 7544525798963043613, guid: f8b384faa40f5d647b3afdef95e8806c, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 8161253939861109748, guid: f8b384faa40f5d647b3afdef95e8806c, type: 3}
       propertyPath: m_Weight
       value: 1

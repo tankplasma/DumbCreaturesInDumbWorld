@@ -8,7 +8,7 @@ public class LadderPathCheckpoint : PathCheckpoint
 
     public List<Vector3> anchors = new List<Vector3>();
 
-    public Vector3 BottomLadder;
+    public Vector3 BottomLadder , endHandPosR , endHandPosL;
 
     [SerializeField]
     [Range(0f, 0.1f)]

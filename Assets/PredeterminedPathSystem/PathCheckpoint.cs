@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using PathCreation;
 using PathSystem;
+using UnityEditor.Search;
+using UnityEditor.XR;
 using UnityEngine;
 using UnityEngine.Splines;
 
 
 public interface IPath
 {
+    public bool IsEnd {  get; }
+
     public PathType Type { get; }
 
     public Vector2 NodePos { get; set; }
@@ -74,6 +78,12 @@ public class PathCheckpoint : MonoBehaviour , IPath
     Vector2 nodePosition = Vector2.zero;
 
     public Vector2 NodePos { get => nodePosition; set => nodePosition = value; }
+
+
+    [SerializeField]
+    bool isEnd;
+
+    public bool IsEnd => IsEnd;
 
     private void Awake()
     {

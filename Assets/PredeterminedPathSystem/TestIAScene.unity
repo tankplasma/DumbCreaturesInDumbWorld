@@ -1102,7 +1102,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &120998379
 GameObject:
@@ -1133,7 +1133,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &282788106
 GameObject:
@@ -1467,8 +1467,93 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &287364981
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1524448057581474329, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524448057581474329, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.676536
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524448057581474329, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524448057581474329, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.9441259
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524448057581474329, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524448057581474329, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524448057581474329, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524448057581474329, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524448057581474329, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524448057581474329, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1524448057581474329, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3245379033769958358, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249282599485795885, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_Weight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6915073715074695211, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_Weight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237633296616641210, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_Weight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7607092018101755250, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_Name
+      value: DUMB
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856787587359130094, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_Weight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8498640162882215029, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
+      propertyPath: m_Weight
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dd0785b7ecee8de48b02136033672f77, type: 3}
 --- !u!1001 &356181870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2109,7 +2194,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &400381058
 GameObject:
@@ -2639,7 +2724,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &883418844 stripped
 Transform:
@@ -2694,7 +2779,7 @@ Transform:
   - {fileID: 511655217}
   - {fileID: 560162011}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1012686732
 GameObject:
@@ -2789,7 +2874,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &1012686735
 MonoBehaviour:
@@ -3348,7 +3433,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1322811996
 PrefabInstance:
@@ -3478,7 +3563,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1353883990
 PrefabInstance:
@@ -3592,7 +3677,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1366537323
 MonoBehaviour:
@@ -3613,22 +3698,24 @@ MonoBehaviour:
   canTake: 1
   showAnchors: 1
   anchors:
-  - {x: -0.023013413, y: -0.4818167, z: 0.1916666}
-  - {x: -0.023013413, y: -0.43481672, z: 0.1916666}
-  - {x: -0.023013413, y: -0.38781673, z: 0.1916666}
-  - {x: -0.023013413, y: -0.3408167, z: 0.1916666}
-  - {x: -0.023013413, y: -0.29381672, z: 0.1916666}
-  - {x: -0.023013413, y: -0.24681672, z: 0.1916666}
-  - {x: -0.023013413, y: -0.1998167, z: 0.1916666}
-  - {x: -0.023013413, y: -0.15281671, z: 0.1916666}
-  - {x: -0.023013413, y: -0.10581672, z: 0.1916666}
-  - {x: -0.023013413, y: -0.05881673, z: 0.1916666}
-  - {x: -0.023013413, y: -0.01181674, z: 0.1916666}
-  - {x: -0.023013413, y: 0.03518325, z: 0.1916666}
-  - {x: -0.023013413, y: 0.0821833, z: 0.1916666}
-  - {x: -0.023013413, y: 0.12918329, z: 0.1916666}
-  - {x: -0.023013413, y: 0.17618328, z: 0.1916666}
-  BottomLadder: {x: -0.023013413, y: -0.5256167, z: 0.1916666}
+  - {x: -0.023013413, y: -0.4816041, z: 0.19166613}
+  - {x: -0.023013413, y: -0.4346041, z: 0.19166613}
+  - {x: -0.023013413, y: -0.38760412, z: 0.19166613}
+  - {x: -0.023013413, y: -0.3406041, z: 0.19166613}
+  - {x: -0.023013413, y: -0.2936041, z: 0.19166613}
+  - {x: -0.023013413, y: -0.24660411, z: 0.19166613}
+  - {x: -0.023013413, y: -0.1996041, z: 0.19166613}
+  - {x: -0.023013413, y: -0.1526041, z: 0.19166613}
+  - {x: -0.023013413, y: -0.10560411, z: 0.19166613}
+  - {x: -0.023013413, y: -0.05860412, z: 0.19166613}
+  - {x: -0.023013413, y: -0.01160413, z: 0.19166613}
+  - {x: -0.023013413, y: 0.03539586, z: 0.19166613}
+  - {x: -0.023013413, y: 0.08239591, z: 0.19166613}
+  - {x: -0.023013413, y: 0.1293959, z: 0.19166613}
+  - {x: -0.023013413, y: 0.1763959, z: 0.19166613}
+  BottomLadder: {x: -0.023013413, y: -0.5254041, z: 0.19166613}
+  endHandPosR: {x: -0.1439946, y: 0.22694625, z: 0.24809098}
+  endHandPosL: {x: -0.14531949, y: 0.22487517, z: 0.16509438}
   rangeBetweenBars: 0.047
   spaceBetweenPointOfBar: 0.0698
   heightOfFirstBar: 0.0438
@@ -3701,8 +3788,8 @@ MonoBehaviour:
     - Mode: 0
       Tension: 0.5
       m_DistanceToInterpolation:
-      - Distance: 0
-        T: 0
+      - Distance: -1
+        T: -1
       - Distance: 0.010355484
         T: 0.03448276
       - Distance: 0.024477173

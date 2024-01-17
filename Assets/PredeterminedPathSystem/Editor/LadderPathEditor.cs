@@ -23,6 +23,13 @@ public class LadderPathEditor : Editor
         checkpoint.BottomLadder = checkpoint.transform.InverseTransformPoint(anchor);
 
         CalculatePoints(checkpoint);
+
+        Vector3 endLHand = Handles.PositionHandle(checkpoint.transform.position + checkpoint.endHandPosL, Quaternion.identity);
+        Vector3 endRHand = Handles.PositionHandle(checkpoint.transform.position + checkpoint.endHandPosR, Quaternion.identity);
+
+        checkpoint.endHandPosL = checkpoint.transform.InverseTransformPoint(endLHand);
+        checkpoint.endHandPosR = checkpoint.transform.InverseTransformPoint(endRHand);
+
     }
 
     void CalculatePoints(LadderPathCheckpoint ladder)

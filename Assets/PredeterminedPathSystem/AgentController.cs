@@ -7,6 +7,14 @@ using UnityEngine.Splines;
 using System.Collections;
 using UnityEditor;
 
+class IKPose
+{
+
+
+    public float floatPos;
+    public Transform rootPos;
+    public Vector3 targetPos = Vector3.zero;
+}
 
 [RequireComponent(typeof(PNJMain))]
 [RequireComponent(typeof(Rigidbody))]
@@ -18,7 +26,7 @@ public class AgentController : MonoBehaviour
 
     Vector3 nextPoint;
 
-    public float JumpSpeed , stoppingDistance , walkSpeed , gravity;
+    public float JumpSpeed , stoppingDistance , walkSpeed , gravity , grindSpeed;
 
     Rigidbody rb;
 
@@ -32,12 +40,19 @@ public class AgentController : MonoBehaviour
     [SerializeField]
     AgentAnimator animator;
 
+    IKPose leftFootIKPose, rightFootIKPose, leftHandIKPose , rightHandIKPose;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         currentCheckpoint = PathManager.instance.BegininPath;
         StartNewPath();
-        
+
+        leftFootIKPose = new IKPose();
+        rightFootIKPose = new IKPose();
+        leftHandIKPose = new IKPose();
+        rightHandIKPose = new IKPose();
+
     }
 
     void StartNewPath()
@@ -61,7 +76,7 @@ public class AgentController : MonoBehaviour
             case PathType.Elevator:
                 break;
             case PathType.Ladder:
-                currentSpeed = walkSpeed/2;
+                currentSpeed = grindSpeed;
                 StartCoroutine(ProcessClimbLadder());
                 break;
             case PathType.None:
@@ -132,6 +147,15 @@ public class AgentController : MonoBehaviour
         return false;
     }
 
+    void FinishPathing(IPath path)
+    {
+        if (path.IsEnd)
+            //make end
+            Debug.Log("is end");
+        else
+            LastPointOfPathReached();
+    }
+
     bool isWalkPointReached()
     {
         Vector3 XYPos = new Vector3(transform.position.x, 0, transform.position.z);
@@ -179,7 +203,7 @@ public class AgentController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         rb.useGravity = true;
-        LastPointOfPathReached();
+        FinishPathing(currentCheckpoint);
     }
     #endregion
 
@@ -202,19 +226,29 @@ public class AgentController : MonoBehaviour
             GoToPoint();
             yield return new WaitForEndOfFrame();
         }
-        LastPointOfPathReached();
+        FinishPathing(currentCheckpoint);
     }
     #endregion
 
     #region ClimbLadder
     IEnumerator ProcessClimbLadder()
     {
-
-        rb.useGravity = false;
-        animator.SetIKWeight(1);
-
         LadderPathCheckpoint lpc = currentCheckpoint as LadderPathCheckpoint;
 
+        nextPoint = GetNextPos();
+        currentSpeed = walkSpeed;
+
+        while (!CheckIfPointIsReached(PathType.Walk))
+        {
+            TurnToPoint(false);
+            GoToPoint();
+            yield return new WaitForEndOfFrame();
+        }
+
+        currentSpeed = grindSpeed;
+        rb.useGravity = false;
+        animator.SetIKWeight(1);
+        
         while (currentProgress < 1)
         {
             if (nextPoint == Vector3.zero)
@@ -234,21 +268,65 @@ public class AgentController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        // finish clim ladder , go on new platform
+
         rb.useGravity = true;
         animator.SetIKWeight(0);
+
+        FinishPathing(currentCheckpoint);
     }
 
     void ControllIkThreshold(LadderPathCheckpoint lpc)
     {
+        // right hand
         Vector3 rightHandPos = lpc.GetCloserPointOfHeight(rightShoulder.position);
-        animator.SetMemberPositionTo(AvatarIKGoal.RightHand, rightHandPos);
+        if (rightHandIKPose.targetPos != rightHandPos)
+        {
+            rightHandIKPose.targetPos = rightHandPos;
+            animator.SetMemberPositionTo(AvatarIKGoal.RightHand, rightHandPos, currentSpeed);
+        }
+        else
+        {
+            animator.SetMemberPositionTo(AvatarIKGoal.RightHand, rightHandIKPose.targetPos, currentSpeed);
+        }
+        // left hand
         Vector3 leftHandPos = lpc.GetCloserPointOfHeight(leftShoulder.position);
-        animator.SetMemberPositionTo(AvatarIKGoal.LeftHand, leftHandPos);
+        if (leftHandIKPose.targetPos != leftHandPos)
+        {
+            leftHandIKPose.targetPos = leftHandPos;
+            print("change : " + leftHandIKPose.targetPos);
+            animator.SetMemberPositionTo(AvatarIKGoal.LeftHand, leftHandPos, currentSpeed);
+        }
+        else
+        {
+            animator.SetMemberPositionTo(AvatarIKGoal.LeftHand, leftHandIKPose.targetPos, currentSpeed);
+        }
+
+        // right foot
         Vector3 rightFootPos = lpc.GetCloserPointOfHeight(rLowerLeg.position);
-        animator.SetMemberPositionTo(AvatarIKGoal.RightFoot, rightFootPos);
+        if (rightFootIKPose.targetPos != rightFootPos)
+        {
+            rightFootIKPose.targetPos = rightFootPos;
+            animator.SetMemberPositionTo(AvatarIKGoal.RightFoot, rightFootPos, currentSpeed);
+        }
+        else
+        {
+            animator.SetMemberPositionTo(AvatarIKGoal.RightFoot, rightFootIKPose.targetPos, currentSpeed);
+        }
+
+        // left foot
         Vector3 leftFootPos = lpc.GetCloserPointOfHeight(lLowerLeg.position);
-        animator.SetMemberPositionTo(AvatarIKGoal.LeftFoot, leftFootPos);
+        if (leftFootIKPose.targetPos != leftFootPos)
+        {
+            leftFootIKPose.targetPos = leftFootPos;
+            animator.SetMemberPositionTo(AvatarIKGoal.LeftFoot, leftFootPos, currentSpeed);
+        }
+        else
+        {
+            animator.SetMemberPositionTo(AvatarIKGoal.LeftFoot, leftFootIKPose.targetPos, currentSpeed);
+        }
     }
+
     #endregion
 
     Vector3 GetNextPos()

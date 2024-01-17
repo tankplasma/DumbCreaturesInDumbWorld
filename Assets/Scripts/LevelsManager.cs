@@ -12,14 +12,21 @@ public class LevelsManager : MonoBehaviour
 
     int currentLevel = 0;
 
+    Transform currentPlayerPos;
+
     private void Awake()
     {
-        Instantiate(playerPrefab , levelsPoints[currentLevel].playerPos.position , playerPrefab.transform.rotation);
+        currentPlayerPos = Instantiate(playerPrefab , levelsPoints[currentLevel].playerPos.position , playerPrefab.transform.rotation).GetComponent<Transform>();
     }
 
-    public void StartLevel()
+    public void OnNewLevel(LevelMain level)
     {
-        
+        currentPlayerPos = level.playerPos;
+    }
+
+    public void StartLevel(LevelMain level)
+    {
+        level.StartLevel();
     }
 
     public void OnLevelFinished()
