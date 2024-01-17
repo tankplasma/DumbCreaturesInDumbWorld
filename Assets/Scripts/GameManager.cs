@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using UnityEditor;
+using UnityEditor.VersionControl;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,8 +24,14 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public static void CountPoints(ScriptableGameState state)
+    public void LoadSceneByID(int id)
     {
-           
+        SceneAsset asset = levelManagement.GetSceneByID(id);
+        AsyncOperation op = SceneManager.LoadSceneAsync(asset.name, LoadSceneMode.Single);
+        op.allowSceneActivation = true;
+        op.completed += (op) =>
+        {
+            Debug.Log("scene completed");
+        };
     }
 }
