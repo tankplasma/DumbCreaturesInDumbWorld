@@ -7,7 +7,7 @@ using UnityEngine.AddressableAssets;
 [System.Serializable]
 public struct LevelReference
 {
-    public AssetReference asset;
+    public SceneAsset asset;
 
     public int id;
 }
@@ -16,4 +16,14 @@ public struct LevelReference
 public class ScriptableLevelsManagement : ScriptableObject
 {
     public List<LevelReference> levels;
+
+    public SceneAsset GetSceneByID(int id)
+    {
+        foreach (LevelReference level in levels) {
+            if (level.id == id) 
+                return level.asset; 
+        }
+
+        return null;
+    }
 }

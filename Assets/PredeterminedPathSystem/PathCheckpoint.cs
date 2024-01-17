@@ -79,11 +79,10 @@ public class PathCheckpoint : MonoBehaviour , IPath
 
     public Vector2 NodePos { get => nodePosition; set => nodePosition = value; }
 
-
     [SerializeField]
     bool isEnd;
 
-    public bool IsEnd => IsEnd;
+    public bool IsEnd => isEnd;
 
     private void Awake()
     {

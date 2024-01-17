@@ -53,7 +53,26 @@ public class AgentAnimator : MonoBehaviour
 
     public void ChangeAnimState(EAnimType type)
     {
-
+        switch (type)
+        {
+            case EAnimType.Walk:
+                animator.SetTrigger(walk);
+                break;
+            case EAnimType.Jump:
+                animator.SetTrigger(jump);
+                break;
+            case EAnimType.BeginJump:
+                animator.SetTrigger(beginJump);
+                break;
+            case EAnimType.Fall:
+                animator.SetTrigger(fall);
+                break;
+            case EAnimType.Swim:
+                animator.SetTrigger(swim);
+                break;
+            default:
+                break;
+        }
     }
     
     public void SetIKWeight(float weight) 

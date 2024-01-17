@@ -1,6 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+public enum SwitchType
+{
+    next,
+    previous,
+    free
+}
 
 public class LevelsManager : MonoBehaviour
 {
@@ -13,6 +21,8 @@ public class LevelsManager : MonoBehaviour
     int currentLevel = 0;
 
     Transform currentPlayerPos;
+
+    UnityEvent<LevelMain> EOnLevelFinished;
 
     private void Awake()
     {
@@ -29,13 +39,28 @@ public class LevelsManager : MonoBehaviour
         level.StartLevel();
     }
 
-    public void OnLevelFinished()
+    public void OnLevelFinished(LevelMain level)
     {
-
+        EOnLevelFinished.Invoke(level);
     }
 
-    public void SwitchLevel()
+    public void SwitchLevel(SwitchType type , int index = 0)
     {
+        switch (type)
+        {
+            case SwitchType.next:
+                currentLevel++;
+                break;
+            case SwitchType.previous:
+                currentLevel--;
+                break;
+            case SwitchType.free:
+                currentLevel = index;
+                break;
+            default:
+                break;
+        }
 
+        OnNewLevel(levelsPoints[currentLevel]);
     }
 }

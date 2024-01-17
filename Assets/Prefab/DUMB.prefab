@@ -533,10 +533,10 @@ MonoBehaviour:
   rightFootPoint: {fileID: 3230909985729628287}
   leftFootPoint: {fileID: 7864369177581079679}
   walk: Walk
-  jump: 
-  beginJump: 
-  fall: 
-  swim: 
+  jump: Jump
+  beginJump: BeginJump
+  fall: Fall
+  swim: Swim
 --- !u!1 &8373096945848291256
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +702,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Characters
       objectReference: {fileID: 0}
+    - target: {fileID: 6188215946498552041, guid: f8b384faa40f5d647b3afdef95e8806c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468512303091127566, guid: f8b384faa40f5d647b3afdef95e8806c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7544525798963043613, guid: f8b384faa40f5d647b3afdef95e8806c, type: 3}
       propertyPath: m_Icon
       value: 
@@ -801,6 +809,10 @@ PrefabInstance:
     - target: {fileID: 8663604869624440992, guid: f8b384faa40f5d647b3afdef95e8806c, type: 3}
       propertyPath: m_Data.m_MaintainTargetRotationOffset
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868593290191713799, guid: f8b384faa40f5d647b3afdef95e8806c, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

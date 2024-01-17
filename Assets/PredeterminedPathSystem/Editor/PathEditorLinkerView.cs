@@ -15,6 +15,8 @@ public class PathEditorLinkerView : GraphView
 {
     List<PathNode> pathNodes = new List<PathNode>();
 
+    PathManager pathManager;
+
     public PathEditorLinkerView()
     {
         SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
@@ -95,19 +97,20 @@ public class PathEditorLinkerView : GraphView
 
                 AddElement(node);
             }
+            if (script.GetType() == typeof(PathManager))
+            {
+                pathManager = (PathManager)script;
+            }
         }
 
         foreach (var node in pathNodes)
         {
             List<MonoBehaviour> mono = node.path.GetCheckpoints();
 
-            Debug.Log("node : " + node.SceneObject.name); 
-
             foreach (var path in pathNodes)
             {
                 if (mono.Contains(path.SceneObject))
                 {
-                    Debug.Log("node : " + node.SceneObject.name + " Contain " + path.SceneObject);
                     MakeConnexion((Port)node.outputContainer[0], (Port)path.inputContainer[0]); 
                 }
             }
@@ -128,6 +131,7 @@ public class PathEditorLinkerView : GraphView
         Add(edge);
     }
 
+
     private PathNode GeneratePathNode(IPath path , MonoBehaviour mono)
     {
         PathNode node = new PathNode
@@ -137,7 +141,6 @@ public class PathEditorLinkerView : GraphView
             SceneObject = mono
         };
 
-        Debug.Log(mono.name + " have "+ path.GetCheckpoints().Count + " checkpoints in list");
          
         Port generatedOutputPort = GeneratePort(node, Direction.Output, Port.Capacity.Multi);
         generatedOutputPort.name = "next";

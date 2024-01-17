@@ -60,16 +60,20 @@ public class AgentController : MonoBehaviour
         switch (currentCheckpoint.Type)
         {
             case PathType.Walk:
+                animator.ChangeAnimState(EAnimType.Walk);
                 currentSpeed = walkSpeed;
                 StartCoroutine(ProcessWalkPathing());
                 break;
             case PathType.Jump:
+                animator.ChangeAnimState(EAnimType.Jump);
                 currentSpeed = JumpSpeed;
                 StartCoroutine(ProcessJumpPathing());
                 break;
             case PathType.Swim:
+                animator.ChangeAnimState(EAnimType.Swim);
                 break;
             case PathType.Fall:
+                animator.ChangeAnimState(EAnimType.Fall);
                 break;
             case PathType.Fly:
                 break;
