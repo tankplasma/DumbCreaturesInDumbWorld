@@ -32,7 +32,7 @@ public class TitleMovement : MonoBehaviour
         StartCoroutine(Wave());
         for (int i = 0; i < letters.Length; i++)
         {
-            float rand = UnityEngine.Random.Range(0f, 2f);
+            float rand = UnityEngine.Random.Range(0f, 0.5f);
             StartShacking(i, rand);
         }
     }
