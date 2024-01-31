@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b62b6e4f9c9b44468adeaeb2b4a5820, type: 3}
+  m_Name: CaveWorld
+  m_EditorClassIdentifier: 
+  id: 2
+  TinyLevelVisual: {fileID: 1419334545150204, guid: e7f62efc22b4ee04e9e10cc8ac24fac2, type: 3}
+  levels:
+  - id: 0
+    asset: {fileID: 102900000, guid: 1a04d073a244afd4ba923dcf061aca2b, type: 3}
+    look: {fileID: 0}
+    name: FirstSteps

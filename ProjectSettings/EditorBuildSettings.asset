@@ -11,6 +11,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AllLevels/Main/Main.unity
     guid: 4f0ab63745b13a448b75b9bec02962b1
+  - enabled: 1
+    path: Assets/Scenes/AllLevels/Tuto Levels/Tuto-Level1.unity
+    guid: 1a04d073a244afd4ba923dcf061aca2b
+  - enabled: 1
+    path: Assets/Scenes/AllLevels/Tuto Levels/Tuto-Level2.unity
+    guid: 51b0d86ab607f4d4290674545d6798f1
+  - enabled: 1
+    path: Assets/Scenes/AllLevels/Tuto Levels/Tuto-Level3.unity
+    guid: 10764060b48af8043831853b85b45d36
+  - enabled: 1
+    path: Assets/Scenes/AllLevels/Tuto Levels/Tuto-Level4.unity
+    guid: c2efd5dacd49bb64f9830a28ad0a2fa7
+  - enabled: 1
+    path: Assets/Scenes/AllLevels/Tuto Levels/Tuto-Level5.unity
+    guid: 9f100d5e9acede542bde879c414d82f4
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 40010eda7b212844b8003367cca79185, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 965ccec3467771d419964814ef91077b, type: 2}
