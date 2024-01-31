@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using UnityEditor;
 using UnityEditor.VersionControl;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public UnityEvent onLevelChange; // Event appelé sur les changements de niveaux
 
     [SerializeField]
-    ScriptableLevelsManagement levelManagement;
+    List<ScriptableWorlds> levelManagement;
 
     private void Awake()
     {
@@ -24,9 +25,14 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public void LoadSceneByID(int id)
+    public List<ScriptableWorlds> GetAllWorlds()
     {
-        SceneAsset asset = levelManagement.GetSceneByID(id);
+        return levelManagement;
+    }
+
+    public void LoadSceneByID(int id , ScriptableWorlds lvl)
+    {
+        SceneAsset asset = lvl.GetSceneByID(id);
         AsyncOperation op = SceneManager.LoadSceneAsync(asset.name, LoadSceneMode.Single);
         op.allowSceneActivation = true;
         op.completed += (op) =>

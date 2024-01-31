@@ -7,14 +7,20 @@ using UnityEngine.AddressableAssets;
 [System.Serializable]
 public struct LevelReference
 {
-    public SceneAsset asset;
-
     public int id;
+
+    public SceneAsset asset;
+    public Sprite look;
+    public string name;
 }
 
-[CreateAssetMenu(menuName = "Scriptables/LevelManagement")]
-public class ScriptableLevelsManagement : ScriptableObject
+[CreateAssetMenu(menuName = "Scriptables/Worlds")]
+public class ScriptableWorlds : ScriptableObject
 {
+    public int id;
+
+    public GameObject TinyLevelVisual;
+
     public List<LevelReference> levels;
 
     public SceneAsset GetSceneByID(int id)
