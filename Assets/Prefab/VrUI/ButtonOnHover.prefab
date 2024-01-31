@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 3221325893843495355}
   - component: {fileID: 1961830074854737536}
   - component: {fileID: 4183960679701434134}
+  - component: {fileID: -8076405589861734513}
   m_Layer: 0
   m_Name: ButtonOnHover
   m_TagString: Untagged
@@ -393,7 +394,7 @@ Transform:
   - {fileID: 3593525989146529141}
   - {fileID: 641266367085341252}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1961830074854737536
 MonoBehaviour:
@@ -562,7 +563,19 @@ MonoBehaviour:
       m_Calls: []
   _whenSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -8076405589861734513}
+        m_TargetAssemblyTypeName: ButtonUI, Assembly-CSharp
+        m_MethodName: OnClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _whenUnselect:
     m_PersistentCalls:
       m_Calls: []
@@ -578,6 +591,24 @@ MonoBehaviour:
   _whenSelectingInteractorViewRemoved:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-8076405589861734513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5792376690140272205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46a469b0be7557479acf9d0a8d6ee62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  onClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  text: {fileID: 6132074636528782045}
+  image: {fileID: 0}
 --- !u!1 &5949043558390210086
 GameObject:
   m_ObjectHideFlags: 0

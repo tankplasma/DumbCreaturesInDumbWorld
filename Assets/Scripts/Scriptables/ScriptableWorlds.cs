@@ -8,7 +8,6 @@ using UnityEngine.AddressableAssets;
 public struct LevelReference
 {
     public int id;
-
     public SceneAsset asset;
     public Sprite look;
     public string name;

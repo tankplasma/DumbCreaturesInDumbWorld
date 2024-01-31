@@ -6,10 +6,12 @@ using UnityEngine.Events;
 using UnityEditor;
 using UnityEditor.VersionControl;
 using Unity.VisualScripting;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
     [HideInInspector] public UnityEvent onLevelChange; // Event appelé sur les changements de niveaux
 
     [SerializeField]
@@ -29,6 +31,12 @@ public class GameManager : MonoBehaviour
     {
         return levelManagement;
     }
+
+    public ScriptableWorlds GetWorldByID(int id)
+    {
+        return levelManagement.Where(x => x.id == id).FirstOrDefault();
+    }
+
 
     public void LoadSceneByID(int id , ScriptableWorlds lvl)
     {
