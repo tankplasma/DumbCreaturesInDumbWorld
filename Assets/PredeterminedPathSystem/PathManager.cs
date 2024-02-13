@@ -23,6 +23,8 @@ public class PathManager : MonoBehaviour
     [SerializeField]
     Transform spawnPos;
 
+    public bool haveFinishedSpawn;
+
     private void Awake()
     {
         if(instance)
@@ -38,14 +40,18 @@ public class PathManager : MonoBehaviour
 
     IEnumerator SpawnDubies()
     {
+        haveFinishedSpawn = false;
+
         int count = 0;
 
-        while(count < NumberOfDumbies) 
+        while(count < NumberOfDumbies-1) 
         {
             SpawnDubie();
             count++;
             yield return new WaitForSeconds(SecondsBetweenSpawns);
         }
+        SpawnDubie();
+        haveFinishedSpawn = true;
     }
 
     void SpawnDubie()

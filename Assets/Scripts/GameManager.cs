@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     List<ScriptableWorlds> levelManagement;
 
+    [SerializeField]
+    SceneAsset lobbyScene;
+
     private void Awake()
     {
         if (Instance)
@@ -25,6 +28,16 @@ public class GameManager : MonoBehaviour
             Instance = this;
         
         DontDestroyOnLoad(this);
+    }
+
+    public void ReturnToLobby()
+    {
+        AsyncOperation op = SceneManager.LoadSceneAsync(lobbyScene.name, LoadSceneMode.Single);
+        op.allowSceneActivation = true;
+        op.completed += (op) =>
+        {
+            Debug.Log("scene completed");
+        };
     }
 
     public List<ScriptableWorlds> GetAllWorlds()
@@ -36,7 +49,6 @@ public class GameManager : MonoBehaviour
     {
         return levelManagement.Where(x => x.id == id).FirstOrDefault();
     }
-
 
     public void LoadSceneByID(int id , ScriptableWorlds lvl)
     {

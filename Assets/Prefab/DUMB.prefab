@@ -442,7 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JumpSpeed: 1
   stoppingDistance: 0.05
-  walkSpeed: 0.5
+  walkSpeed: 0.3
   gravity: -9.81
   grindSpeed: 0.1
   debug: 1
@@ -451,6 +451,7 @@ MonoBehaviour:
   lLowerLeg: {fileID: 1106125357090299073}
   rLowerLeg: {fileID: 1906636788566965064}
   animator: {fileID: 574602558626359659}
+  main: {fileID: -2509877726562624615}
 --- !u!136 &4891751026844683218
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -809,6 +810,10 @@ PrefabInstance:
     - target: {fileID: 8663604869624440992, guid: f8b384faa40f5d647b3afdef95e8806c, type: 3}
       propertyPath: m_Data.m_MaintainTargetRotationOffset
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8868593290191713799, guid: f8b384faa40f5d647b3afdef95e8806c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8868593290191713799, guid: f8b384faa40f5d647b3afdef95e8806c, type: 3}
       propertyPath: m_ApplyRootMotion

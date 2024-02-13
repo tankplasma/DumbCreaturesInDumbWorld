@@ -19,6 +19,11 @@ public class PNJMain : MonoBehaviour
         gameState.AddPNJ(this);
     }
 
+    public void OnCollectableCollected(Collectable collectable)
+    {
+        collectable.OnCollected();
+    }
+
     public void IAmDead()
     {
         gameState.ChangePNJState(this, PNJStatus.dead);
@@ -28,5 +33,6 @@ public class PNJMain : MonoBehaviour
     public void IFinished()
     {
         gameState.PNJHaveFinished(this);
+        gameObject.SetActive(false);
     }
 }
