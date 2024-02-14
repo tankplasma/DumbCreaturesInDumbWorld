@@ -42,6 +42,9 @@ public class AgentController : MonoBehaviour
 
     IKPose leftFootIKPose, rightFootIKPose, leftHandIKPose , rightHandIKPose;
 
+    [SerializeField]
+    PNJMain main;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -155,7 +158,7 @@ public class AgentController : MonoBehaviour
     {
         if (path.IsEnd)
             //make end
-            Debug.Log("is end");
+            main.IFinished();
         else
             LastPointOfPathReached();
     }
@@ -344,6 +347,7 @@ public class AgentController : MonoBehaviour
         currentProgress = 0;
 
         GetNewCheckpoint();
+
         if (currentCheckpoint != null)
             StartNewPath();
         else

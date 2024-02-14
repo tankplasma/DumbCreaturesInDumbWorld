@@ -7,19 +7,20 @@ using UnityEngine.Events;
 public enum PNJStatus
 {
     alive,
-    dead
+    dead,
+    finished
 }
 
 [CreateAssetMenu(menuName = "Scriptables/GameState")]
 public class ScriptableGameState : ScriptableObject
 {
-    public Action<PNJMain> OnPNJDead , OnPNJAdd;
+    public UnityEvent<PNJMain> OnPNJDead , OnPNJAdd;
     
     Dictionary<PNJMain, PNJStatus> PNJsState = new Dictionary<PNJMain, PNJStatus>();
 
-    List<PNJMain> PNJFinished = new List<PNJMain>();
+    //List<PNJMain> PNJFinished = new List<PNJMain>();
 
-    UnityEvent ENewPNJFinished;
+    public UnityEvent ELevelFinished; // return PNJ count
 
     public void AddPNJ(PNJMain pnj)
     {
@@ -39,7 +40,10 @@ public class ScriptableGameState : ScriptableObject
         if (!IsPNJExistInDictionary(pnj))
             return;
 
-        PNJsState[pnj] = status; 
+        PNJsState[pnj] = status;
+
+        if (IsTheLastPnjFinished())
+            ELevelFinished.Invoke();
     }
 
     bool IsPNJExistInDictionary(PNJMain pnj)
@@ -57,7 +61,22 @@ public class ScriptableGameState : ScriptableObject
 
     public void PNJHaveFinished(PNJMain PNJ)
     {
-        PNJFinished.Add(PNJ);
-        ENewPNJFinished.Invoke();
+        //PNJFinished.Add(PNJ);
+        ChangePNJState(PNJ,PNJStatus.finished);
+
+        if (IsTheLastPnjFinished())
+            ELevelFinished.Invoke();
+    }
+
+    bool IsTheLastPnjFinished()
+    {
+        foreach (var item in PNJsState)
+        {
+            if (item.Value == PNJStatus.alive)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

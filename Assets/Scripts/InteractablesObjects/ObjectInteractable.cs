@@ -25,7 +25,6 @@ public class ObjectInteractable : MonoBehaviour, IPointableElement
 
     public void ProcessPointerEvent(PointerEvent evt)
     {
-        Debug.Log("interact");
         switch (evt.Type)
         {
             case PointerEventType.Hover:
