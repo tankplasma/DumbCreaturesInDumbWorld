@@ -20,18 +20,18 @@ MonoBehaviour:
     look: {fileID: 0}
     name: FirstSteps
   - id: 1
-    asset: {fileID: 102900000, guid: 51b0d86ab607f4d4290674545d6798f1, type: 3}
+    asset: {fileID: 102900000, guid: 1a105e71ba408a94f8484f5367323a08, type: 3}
     look: {fileID: 0}
     name: SecondSteps
   - id: 2
-    asset: {fileID: 102900000, guid: 10764060b48af8043831853b85b45d36, type: 3}
+    asset: {fileID: 102900000, guid: f5738a88eddc43d43a1cd5456d8687c7, type: 3}
     look: {fileID: 0}
     name: ThirdSteps
   - id: 3
-    asset: {fileID: 102900000, guid: c2efd5dacd49bb64f9830a28ad0a2fa7, type: 3}
+    asset: {fileID: 102900000, guid: ec4ba37207491be49ac08c6a62b881cc, type: 3}
     look: {fileID: 0}
     name: FourthSteps
   - id: 4
-    asset: {fileID: 102900000, guid: 9f100d5e9acede542bde879c414d82f4, type: 3}
+    asset: {fileID: 102900000, guid: 525626ac693eae344942efdca32a8784, type: 3}
     look: {fileID: 0}
-    name: FifthSteps
+    name: Final Step

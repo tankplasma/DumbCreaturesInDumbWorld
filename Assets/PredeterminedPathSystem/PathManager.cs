@@ -23,6 +23,7 @@ public class PathManager : MonoBehaviour
     [SerializeField]
     Transform spawnPos;
 
+    [HideInInspector]
     public bool haveFinishedSpawn;
 
     private void Awake()

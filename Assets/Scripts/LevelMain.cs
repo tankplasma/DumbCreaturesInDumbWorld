@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class LevelMain : MonoBehaviour
@@ -13,7 +14,9 @@ public class LevelMain : MonoBehaviour
     ScriptableGameState gameState;
 
     [SerializeField]
-    public int NumberOfDumbs;
+    GameObject menu;
+
+    bool alreadyStart = false;
 
     private void Awake()
     {
@@ -25,7 +28,8 @@ public class LevelMain : MonoBehaviour
 
     private void Start()
     {
-        gameState.ELevelFinished.AddListener(OnLevelEnd);    
+        gameState.ELevelFinished.AddListener(OnLevelEnd);
+        menu.SetActive(false);
     }
 
     public void OnLevelEnd()
@@ -33,12 +37,22 @@ public class LevelMain : MonoBehaviour
         if (PathManager.instance.haveFinishedSpawn)
         {
             Debug.Log("end");
-            GameManager.Instance.ReturnToLobby();
+            menu.SetActive(true);
+            //GameManager.Instance.ReturnToLobby();
         }
     }
 
+    public void CallReturnToMenu()
+    {
+        GameManager.Instance.ReturnToLobby();
+    }
+
+    [ContextMenu("start")]
     public void StartLevel()
     {
-
+        if (alreadyStart)
+            return;
+        alreadyStart = true;
+        PathManager.instance.StartSpawn();
     }
 }
