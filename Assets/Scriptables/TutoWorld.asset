@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TutoWorld
   m_EditorClassIdentifier: 
   id: 0
-  TinyLevelVisual: {fileID: 1737046982831056, guid: 21b750dc08701d74581686df5b328359, type: 3}
+  TinyLevelVisual: {fileID: 130556685989066415, guid: faeb5cfeb13a438438f8b5099b3418d5, type: 3}
   levels:
   - id: 0
     asset: {fileID: 102900000, guid: 1a04d073a244afd4ba923dcf061aca2b, type: 3}
