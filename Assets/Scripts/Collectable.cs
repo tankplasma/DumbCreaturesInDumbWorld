@@ -22,12 +22,17 @@ public class Collectable : MonoBehaviour
         {
             if (other.gameObject.TryGetComponent(out PNJMain main))
             {
-                main.OnCollectableCollected(this);
+                main.OnCollectableCollected(this);      
             }
         }
     }
 
     public void OnCollected()
+    {
+        GetComponent<Animator>().SetTrigger("Collected");
+    }
+
+    public void Disabled() 
     {
         gameObject.SetActive(false);
     }
