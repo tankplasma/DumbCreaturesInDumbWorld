@@ -23,6 +23,7 @@ public class PathManager : MonoBehaviour
     [SerializeField]
     Transform spawnPos;
 
+    [HideInInspector]
     public bool haveFinishedSpawn;
 
     private void Awake()
@@ -33,7 +34,7 @@ public class PathManager : MonoBehaviour
             instance = this;
     }
 
-    private void Start()
+    public void StartSpawn()
     {
         StartCoroutine(SpawnDubies());
     }

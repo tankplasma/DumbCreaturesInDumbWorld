@@ -12,55 +12,37 @@ public enum SwitchType
 
 public class LevelsManager : MonoBehaviour
 {
-    [SerializeField]
-    GameObject playerPrefab;
+    public static LevelsManager instance;
 
-    [SerializeField]
-    LevelMain[] levelsPoints;
-
-    int currentLevel = 0;
-
-    Transform currentPlayerPos;
-
-    UnityEvent<LevelMain> EOnLevelFinished;
+    [SerializeField]ScriptableGameState gameState;
 
     private void Awake()
     {
-        currentPlayerPos = Instantiate(playerPrefab , levelsPoints[currentLevel].playerPos.position , playerPrefab.transform.rotation).GetComponent<Transform>();
+        if(instance)
+            Destroy(instance);
+        else
+            instance = this;
     }
 
-    public void OnNewLevel(LevelMain level)
+    [SerializeField]
+    float time;
+
+    UnityEvent EOnLevelFinished , EOnLevelStarted;
+
+    public void StartLevel()
     {
-        currentPlayerPos = level.playerPos;
+        EOnLevelStarted.Invoke();
+        PathManager.instance.StartSpawn();
+        StartCoroutine(StartTimer());
     }
 
-    public void StartLevel(LevelMain level)
+    IEnumerator StartTimer()
     {
-        level.StartLevel();
-    }
-
-    public void OnLevelFinished(LevelMain level)
-    {
-        EOnLevelFinished.Invoke(level);
-    }
-
-    public void SwitchLevel(SwitchType type , int index = 0)
-    {
-        switch (type)
+        float currentTime = 0;
+        while (currentTime < time)
         {
-            case SwitchType.next:
-                currentLevel++;
-                break;
-            case SwitchType.previous:
-                currentLevel--;
-                break;
-            case SwitchType.free:
-                currentLevel = index;
-                break;
-            default:
-                break;
+            currentTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
         }
-
-        OnNewLevel(levelsPoints[currentLevel]);
     }
 }
