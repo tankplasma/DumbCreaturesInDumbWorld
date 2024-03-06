@@ -22,6 +22,7 @@ public class PNJMain : MonoBehaviour
     public void OnCollectableCollected(Collectable collectable)
     {
         collectable.OnCollected();
+        gameState.AddColletable(collectable);
     }
 
     public void IAmDead()

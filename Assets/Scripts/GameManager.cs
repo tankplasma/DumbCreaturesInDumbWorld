@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     SceneAsset lobbyScene;
 
+    KeyValuePair<ScriptableWorlds, int> currentLevel;
+
     private void Awake()
     {
         if (Instance)
@@ -52,6 +54,9 @@ public class GameManager : MonoBehaviour
 
     public void LoadSceneByID(int id , ScriptableWorlds lvl)
     {
+        // get lvl and id to load to be able to go to next level
+        currentLevel = new KeyValuePair<ScriptableWorlds, int>(lvl, id);
+
         SceneAsset asset = lvl.GetSceneByID(id);
         AsyncOperation op = SceneManager.LoadSceneAsync(asset.name, LoadSceneMode.Single);
         op.allowSceneActivation = true;
@@ -60,4 +65,13 @@ public class GameManager : MonoBehaviour
             Debug.Log("scene completed");
         };
     }
+
+    public void GoNextLevel()
+    {
+        if (currentLevel.Key.levels.Count > currentLevel.Value+1) // get if nextLevel is reachable
+        {
+            LoadSceneByID(currentLevel.Value, currentLevel.Key);
+        }
+    }
+
 }

@@ -110,8 +110,6 @@ public class PathCheckpoint : MonoBehaviour , IPath
 
     public IPath GetNextPathCheckpoint()
     {
-
-        Debug.Log("get new checkpoint");
         IPath newCheckpoint = null;
 
         foreach (var item in paths)
@@ -140,6 +138,11 @@ public class PathCheckpoint : MonoBehaviour , IPath
     public void ReplaceCheckpoints(List<MonoBehaviour> paths)
     {
         checkpointList = paths;
+    }
+
+    public void ToggleActivation()
+    {
+        canTake = !canTake;
     }
 
     public List<MonoBehaviour> GetCheckpoints()

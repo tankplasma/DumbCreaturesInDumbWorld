@@ -17,7 +17,7 @@ class IKPose
 }
 
 [RequireComponent(typeof(PNJMain))]
-[RequireComponent(typeof(Rigidbody))]
+//[RequireComponent(typeof(Rigidbody))]
 public class AgentController : MonoBehaviour
 {
     IPath currentCheckpoint;
@@ -44,6 +44,9 @@ public class AgentController : MonoBehaviour
 
     [SerializeField]
     PNJMain main;
+
+    [SerializeField]
+    CharacterController characterController;
 
     private void Start()
     {
@@ -94,7 +97,6 @@ public class AgentController : MonoBehaviour
     void TurnToPoint(bool allAxes = true)
     {
         Vector3 pointPos = new Vector3(nextPoint.x, allAxes?nextPoint.y:transform.position.y,nextPoint.z);
-
         transform.LookAt(pointPos);
     }
 
@@ -106,6 +108,16 @@ public class AgentController : MonoBehaviour
     void GoToPoint()
     {
         Vector3 Direction = (nextPoint - transform.position).normalized;
+
+        Direction.y = 0;
+        
+        rb.velocity = Direction * currentSpeed;
+    }
+
+    void GoToPointFree()
+    {
+        Vector3 Direction = (nextPoint - transform.position).normalized;
+
         rb.velocity = Direction * currentSpeed;
     }
 
@@ -205,7 +217,7 @@ public class AgentController : MonoBehaviour
             {
                 nextPoint = GetNextPos();
             }
-            GoToPoint();
+            GoToPointFree();
 
             yield return new WaitForEndOfFrame();
         }

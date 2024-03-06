@@ -22,6 +22,11 @@ public class ScriptableGameState : ScriptableObject
 
     public UnityEvent ELevelFinished; // return PNJ count
 
+    public void NewGame()
+    {
+        PNJsState.Clear();
+    }
+
     public void AddPNJ(PNJMain pnj)
     {
         PNJsState.Add(pnj , PNJStatus.alive);
@@ -78,5 +83,10 @@ public class ScriptableGameState : ScriptableObject
             }
         }
         return true;
+    }
+
+    public void AddColletable(Collectable collectable)
+    {
+
     }
 }

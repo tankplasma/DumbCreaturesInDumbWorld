@@ -403,8 +403,9 @@ GameObject:
   - component: {fileID: 3245379033769958358}
   - component: {fileID: 4891751026844683218}
   - component: {fileID: -2509877726562624615}
-  - component: {fileID: 4468557916419436461}
   - component: {fileID: 574602558626359659}
+  - component: {fileID: -4588877307987510749}
+  - component: {fileID: 234035434694376322}
   m_Layer: 0
   m_Name: DUMB
   m_TagString: Dumb
@@ -445,13 +446,14 @@ MonoBehaviour:
   walkSpeed: 0.5
   gravity: -9.81
   grindSpeed: 0.1
-  debug: 1
+  debug: 0
   rightShoulder: {fileID: 6949809448362940755}
   leftShoulder: {fileID: 5536001261445883355}
   lLowerLeg: {fileID: 1106125357090299073}
   rLowerLeg: {fileID: 1906636788566965064}
   animator: {fileID: 574602558626359659}
   main: {fileID: -2509877726562624615}
+  characterController: {fileID: 0}
 --- !u!136 &4891751026844683218
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -488,7 +490,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: {fileID: 11400000, guid: cb194ee227bcc62479d07a6fd1ad3559, type: 2}
---- !u!54 &4468557916419436461
+--- !u!114 &574602558626359659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607092018101755250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29f3284cce08324baf65bad5ab6daac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7447230869826882589}
+  IKRig: {fileID: 7856787587359130094}
+  rightHandPoint: {fileID: 7188168895775747880}
+  leftHandPoint: {fileID: 7732931386106003958}
+  rightFootPoint: {fileID: 3230909985729628287}
+  leftFootPoint: {fileID: 7864369177581079679}
+  walk: Walk
+  jump: Jump
+  beginJump: BeginJump
+  fall: Fall
+  swim: Swim
+--- !u!54 &-4588877307987510749
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -515,7 +540,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &574602558626359659
+--- !u!114 &234035434694376322
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -524,20 +549,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7607092018101755250}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b29f3284cce08324baf65bad5ab6daac, type: 3}
+  m_Script: {fileID: 11500000, guid: 149d94fac808374469d2440c98cc5f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 7447230869826882589}
-  IKRig: {fileID: 7856787587359130094}
-  rightHandPoint: {fileID: 7188168895775747880}
-  leftHandPoint: {fileID: 7732931386106003958}
-  rightFootPoint: {fileID: 3230909985729628287}
-  leftFootPoint: {fileID: 7864369177581079679}
-  walk: Walk
-  jump: Jump
-  beginJump: BeginJump
-  fall: Fall
-  swim: Swim
+  maxStepHeight: 0.03
+  showStepDetection: 0
+  rangeDetection: 0.03
+  spaceBetweenDetections: 0.002
 --- !u!1 &8373096945848291256
 GameObject:
   m_ObjectHideFlags: 0
