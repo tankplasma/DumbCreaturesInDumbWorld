@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
     {
         if (currentLevel.Key.levels.Count > currentLevel.Value+1) // get if nextLevel is reachable
         {
-            LoadSceneByID(currentLevel.Value, currentLevel.Key);
+            LoadSceneByID(currentLevel.Value+1, currentLevel.Key);
         }
     }
 

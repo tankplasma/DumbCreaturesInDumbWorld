@@ -28,6 +28,10 @@ MonoBehaviour:
     look: {fileID: 0}
     name: Tuto Path
   - id: 3
+    asset: {fileID: 102900000, guid: ec4ba37207491be49ac08c6a62b881cc, type: 3}
+    look: {fileID: 0}
+    name: tuto interactions
+  - id: 4
     asset: {fileID: 102900000, guid: 525626ac693eae344942efdca32a8784, type: 3}
     look: {fileID: 0}
-    name: Final Movable
+    name: test level
