@@ -289,6 +289,8 @@ public class AgentController : MonoBehaviour
 
         // finish clim ladder , go on new platform
 
+        transform.position = lpc.GetTopPoint();
+
         rb.useGravity = true;
         animator.SetIKWeight(0);
 

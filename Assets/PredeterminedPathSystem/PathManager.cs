@@ -34,6 +34,7 @@ public class PathManager : MonoBehaviour
             instance = this;
     }
 
+    [ContextMenu("start spawn")]
     public void StartSpawn()
     {
         StartCoroutine(SpawnDubies());

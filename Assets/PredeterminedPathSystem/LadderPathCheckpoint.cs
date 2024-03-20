@@ -11,11 +11,19 @@ public class LadderPathCheckpoint : PathCheckpoint
     public Vector3 BottomLadder , endHandPosR , endHandPosL;
 
     [SerializeField]
+    Transform topTPPoint;
+
+    [SerializeField]
     [Range(0f, 0.1f)]
     public float rangeBetweenBars, spaceBetweenPointOfBar, heightOfFirstBar;
 
     [SerializeField]
     public int numberOfBars;
+
+    public Vector3 GetTopPoint()
+    {
+        return topTPPoint.position;
+    }
 
     public Vector3 GetCloserPointOfHeight(Vector3 point)
     {
