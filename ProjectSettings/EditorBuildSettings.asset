@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 525626ac693eae344942efdca32a8784
+  - enabled: 1
+    path: Assets/Scenes/AllLevels/City Levels/City-Level1.unity
+    guid: c67bfa08135bc59418ab3416555077e7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 40010eda7b212844b8003367cca79185, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 965ccec3467771d419964814ef91077b, type: 2}
