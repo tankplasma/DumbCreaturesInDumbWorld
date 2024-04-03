@@ -5,12 +5,27 @@ using UnityEngine.Rendering;
 
 public class InteractablePlacer : MonoBehaviour
 {
-    Transform placingHolder;
+    [SerializeField]
+    PlaceHolder placingHolder;
 
-    float placementDelta;
+    [SerializeField]
+    float placementDeltaRotation , placementDeltaPosition;
+
+    private void Update()
+    {
+        if (IsCloseToTheRightPlace())
+            placingHolder.OnObjectPlace(this);
+        else
+            return;
+    }
 
     bool IsCloseToTheRightPlace()
     {
-        return Quaternion.Angle(placingHolder.rotation, transform.rotation) < placementDelta;
+        return Quaternion.Angle(placingHolder.rot, transform.rotation) < placementDeltaRotation && (placingHolder.pos - transform.position).magnitude < placementDeltaPosition;
+    }
+
+    public void Hide()
+    {
+        gameObject.SetActive(false);
     }
 }
