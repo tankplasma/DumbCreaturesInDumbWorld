@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using PathCreation;
 using PathSystem;
+using Unity.VisualScripting;
 using UnityEditor.Search;
 using UnityEditor.XR;
 using UnityEngine;
@@ -110,15 +111,19 @@ public class PathCheckpoint : MonoBehaviour , IPath
 
     public IPath GetNextPathCheckpoint()
     {
-        IPath newCheckpoint = null;
+        IPath newCheckpoint = paths[0];
 
         foreach (var item in paths)
         {
-            if (newCheckpoint == null)
-                newCheckpoint = item;
-            else
+            if (item.IsAvailable)
             {
-                if (item.Importance > newCheckpoint.Importance && item.IsAvailable)
+                if (!newCheckpoint.IsAvailable)
+                {
+                    newCheckpoint = item;
+                    continue;
+                }
+
+                if (item.Importance > newCheckpoint.Importance)
                     newCheckpoint = item;
             }
         }

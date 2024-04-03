@@ -930,7 +930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   JumpSpeed: 1
   stoppingDistance: 0.05
-  walkSpeed: 0.4
+  walkSpeed: 0.2
   gravity: -9.81
   grindSpeed: 0.1
   debug: 1
