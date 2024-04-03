@@ -18,15 +18,18 @@ public class PlaceHolder : MonoBehaviour
     [SerializeField]
     Material completeMaterial , placeHolderMaterial;
 
+    public bool isAlreadyTaken { get; private set; }
+
     private void Start()
     {
+        isAlreadyTaken = false;
         rend.material = placeHolderMaterial;
     }
 
     public void OnObjectPlace(InteractablePlacer placer)
     {
         rend.material = completeMaterial;
-
+        isAlreadyTaken = true;
         OnPlacedComplete.Invoke();
         placer.Hide();
     }

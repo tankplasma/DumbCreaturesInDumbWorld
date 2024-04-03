@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 public class InteractablePlacer : MonoBehaviour
 {
     [SerializeField]
-    PlaceHolder placingHolder;
+    PlaceHolder[] placingHolder;
 
     [SerializeField]
     float placementDeltaRotation , placementDeltaPosition;
@@ -14,14 +14,24 @@ public class InteractablePlacer : MonoBehaviour
     private void Update()
     {
         if (IsCloseToTheRightPlace())
-            placingHolder.OnObjectPlace(this);
+            Debug.Log("placed");
         else
             return;
     }
 
     bool IsCloseToTheRightPlace()
     {
-        return Quaternion.Angle(placingHolder.rot, transform.rotation) < placementDeltaRotation && (placingHolder.pos - transform.position).magnitude < placementDeltaPosition;
+        //Debug.Log(Quaternion.Angle(placingHolder.rot, transform.rotation));
+        foreach (var p in placingHolder)
+        {
+            if(p.isAlreadyTaken)
+                continue;
+
+            if (/*Quaternion.Angle(p.rot, transform.rotation) < placementDeltaRotation && */(p.pos - transform.position).magnitude < placementDeltaPosition)
+                p.OnObjectPlace(this);
+                return true;
+        }
+        return false;
     }
 
     public void Hide()
