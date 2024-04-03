@@ -24,12 +24,14 @@ public class InteractablePlacer : MonoBehaviour
         //Debug.Log(Quaternion.Angle(placingHolder.rot, transform.rotation));
         foreach (var p in placingHolder)
         {
-            if(p.isAlreadyTaken)
+            if (p.isAlreadyTaken)
                 continue;
 
             if (/*Quaternion.Angle(p.rot, transform.rotation) < placementDeltaRotation && */(p.pos - transform.position).magnitude < placementDeltaPosition)
+            {
                 p.OnObjectPlace(this);
                 return true;
+            }
         }
         return false;
     }

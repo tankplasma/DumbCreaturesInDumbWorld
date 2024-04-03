@@ -20,12 +20,14 @@ public class PlayerMain : MonoBehaviour
 
     void BindEvents() 
     {
-        gameManager.onLevelChange.AddListener(FadeIn);
+        if(gameManager)
+            gameManager.onLevelChange.AddListener(FadeIn);
     }
 
     void UnbindEvents() 
     {
-        gameManager.onLevelChange.RemoveListener(FadeIn);
+        if(gameManager)
+            gameManager.onLevelChange.RemoveListener(FadeIn);
     }
 
     void FadeIn() 
