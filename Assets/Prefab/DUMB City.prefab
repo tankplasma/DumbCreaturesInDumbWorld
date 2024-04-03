@@ -869,12 +869,12 @@ Transform:
   m_GameObject: {fileID: 2067909281862769056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.032256767, y: 0.90516734, z: 1.0137564}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1159832077503267520}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4040287659012655217
 MonoBehaviour:
@@ -940,6 +940,7 @@ MonoBehaviour:
   rLowerLeg: {fileID: 7809070607782781557}
   animator: {fileID: 5572922211532962525}
   main: {fileID: 4040287659012655217}
+  characterController: {fileID: 0}
 --- !u!136 &1781691496555010043
 CapsuleCollider:
   m_ObjectHideFlags: 0
