@@ -7,10 +7,13 @@ public class PlaceHolder : MonoBehaviour
 {
 
     [SerializeField]
-    UnityEvent OnPlacedComplete;
+    UnityEvent OnPlacedComplete , OnRemove;
 
-    public Vector3 pos { get => transform.position;}
-    public Quaternion rot { get => transform.rotation; }
+    public Vector3 pos { get => placeHolderTransform.position;}
+    public Quaternion rot { get => placeHolderTransform.rotation; }
+
+    [SerializeField]
+    Transform placeHolderTransform;
 
     [SerializeField]
     Renderer rend;
@@ -22,6 +25,8 @@ public class PlaceHolder : MonoBehaviour
 
     private void Start()
     {
+        if(!placeHolderTransform)
+            placeHolderTransform = transform;
         isAlreadyTaken = false;
         rend.material = placeHolderMaterial;
     }
@@ -32,5 +37,13 @@ public class PlaceHolder : MonoBehaviour
         isAlreadyTaken = true;
         OnPlacedComplete.Invoke();
         placer.Hide();
+    }
+
+    public void OnObjectRemove(InteractablePlacer placer)
+    {
+        rend.material = placeHolderMaterial;
+        isAlreadyTaken = false;
+        OnRemove.Invoke();
+        placer.Show();
     }
 }

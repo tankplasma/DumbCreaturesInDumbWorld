@@ -7,7 +7,9 @@ using UnityEngine.Rendering.Universal;
 public class MissionChecker : MonoBehaviour
 {
     [SerializeField]
-    UnityEvent MissionComplete;
+    UnityEvent MissionComplete , MissionNotComplete;
+
+    bool missionsWasComplete;
 
     [SerializeField]
     List<MissionHandler> missions;
@@ -16,14 +18,20 @@ public class MissionChecker : MonoBehaviour
     {
         foreach (var mission in missions)
         {
-            mission.missionComplete.AddListener(CheckMissionComplete);
+            mission.missionStatusChanged.AddListener(CheckMissionComplete);
         }
     }
 
     void CheckMissionComplete()
     {
-        if(AreAllMissionsComplete())
+        if (AreAllMissionsComplete())
+        {
+            missionsWasComplete = true;
             MissionComplete.Invoke();
+        }
+        else
+            if(missionsWasComplete)
+                MissionNotComplete.Invoke();
     }
 
     bool AreAllMissionsComplete()

@@ -13779,6 +13779,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnRemove:
+    m_PersistentCalls:
+      m_Calls: []
+  placeHolderTransform: {fileID: 0}
   rend: {fileID: 23440121027124283}
   completeMaterial: {fileID: 2100000, guid: f685a57b9da560a448bb95374a652f90, type: 2}
   placeHolderMaterial: {fileID: 2100000, guid: f97d4afb996f68648bd9150fb890eb7b, type: 2}
@@ -19297,6 +19301,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnRemove:
+    m_PersistentCalls:
+      m_Calls: []
+  placeHolderTransform: {fileID: 0}
   rend: {fileID: 26211464}
   completeMaterial: {fileID: 2100000, guid: f685a57b9da560a448bb95374a652f90, type: 2}
   placeHolderMaterial: {fileID: 2100000, guid: f97d4afb996f68648bd9150fb890eb7b, type: 2}
@@ -24966,6 +24974,7 @@ MonoBehaviour:
   - {fileID: 816011074}
   placementDeltaRotation: 20
   placementDeltaPosition: 0.1
+  rend: {fileID: 0}
 --- !u!1001 &1051805603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25702,6 +25711,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnRemove:
+    m_PersistentCalls:
+      m_Calls: []
+  placeHolderTransform: {fileID: 0}
   rend: {fileID: 23000961973671360}
   completeMaterial: {fileID: 2100000, guid: f685a57b9da560a448bb95374a652f90, type: 2}
   placeHolderMaterial: {fileID: 2100000, guid: f97d4afb996f68648bd9150fb890eb7b, type: 2}
@@ -25803,6 +25816,7 @@ MonoBehaviour:
   - {fileID: 816011074}
   placementDeltaRotation: 20
   placementDeltaPosition: 0.1
+  rend: {fileID: 0}
 --- !u!1001 &1094299743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38796,6 +38810,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnRemove:
+    m_PersistentCalls:
+      m_Calls: []
+  placeHolderTransform: {fileID: 0}
   rend: {fileID: 0}
   completeMaterial: {fileID: 2100000, guid: f685a57b9da560a448bb95374a652f90, type: 2}
   placeHolderMaterial: {fileID: 2100000, guid: f97d4afb996f68648bd9150fb890eb7b, type: 2}
@@ -39473,6 +39491,33 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: mission complete
+          m_BoolArgument: 0
+        m_CallState: 2
+  MissionNotComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1675400135}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 703889825389386090}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   missions:
@@ -42173,6 +42218,7 @@ MonoBehaviour:
   - {fileID: 555364602}
   placementDeltaRotation: 20
   placementDeltaPosition: 0.1
+  rend: {fileID: 0}
 --- !u!54 &1730844272
 Rigidbody:
   m_ObjectHideFlags: 0

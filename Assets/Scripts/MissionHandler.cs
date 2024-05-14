@@ -5,14 +5,20 @@ using UnityEngine.Events;
 
 public class MissionHandler : MonoBehaviour
 {
-    public UnityEvent missionComplete;
+    public UnityEvent missionStatusChanged;
 
     public bool IsMissionComplete;
 
     public void CompleteMission()
     {
         IsMissionComplete = true;
-        missionComplete.Invoke();
+        missionStatusChanged.Invoke();
+    }
+
+    public void DiscompleteMission()
+    {
+        IsMissionComplete = false;
+        missionStatusChanged.Invoke();
     }
 
     public void UnCompleteMission()

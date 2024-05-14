@@ -1,7 +1,7 @@
+using Oculus.Interaction;
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class InteractablePlacer : MonoBehaviour
 {
@@ -11,15 +11,73 @@ public class InteractablePlacer : MonoBehaviour
     [SerializeField]
     float placementDeltaRotation , placementDeltaPosition;
 
+    Grabbable grab;
+
+    PlaceHolder chooseHolder;
+
+    [SerializeField]
+    Renderer rend;
+
+    Coroutine PlaceCo;
+
+    private void Start()
+    {
+        grab = GetComponent<Grabbable>();
+
+        if (grab)
+            grab.WhenPointerEventRaised += OnEvent;
+    }
+
+    private void OnEvent(PointerEvent e)
+    {
+        switch (e.Type)
+        {
+            case PointerEventType.Hover:
+                break;
+            case PointerEventType.Unhover:
+                break;
+            case PointerEventType.Select:
+                PlaceCo = StartCoroutine(PlaceObect());
+                break;
+            case PointerEventType.Unselect:
+                if(PlaceCo != null)StopCoroutine(PlaceCo);
+                if (chooseHolder)
+                    chooseHolder.OnObjectPlace(this);
+                break;
+            case PointerEventType.Move:
+                break;
+            case PointerEventType.Cancel:
+                break;
+            default:
+                break;
+        }
+    }
+
     private void Update()
     {
-        if (IsCloseToTheRightPlace())
+        if (PlaceProcessing())
             Debug.Log("placed");
         else
             return;
     }
 
-    bool IsCloseToTheRightPlace()
+    IEnumerator PlaceObect()
+    {
+        if (chooseHolder)
+        {
+            chooseHolder.OnObjectRemove(this);
+            chooseHolder = null;
+        }
+        
+        while (true)
+        {
+            if (PlaceProcessing())
+                 break;
+            yield return null;
+        }
+    }
+
+    bool PlaceProcessing()
     {
         //Debug.Log(Quaternion.Angle(placingHolder.rot, transform.rotation));
         foreach (var p in placingHolder)
@@ -27,9 +85,9 @@ public class InteractablePlacer : MonoBehaviour
             if (p.isAlreadyTaken)
                 continue;
 
-            if (/*Quaternion.Angle(p.rot, transform.rotation) < placementDeltaRotation && */(p.pos - transform.position).magnitude < placementDeltaPosition)
+            if ((p.pos - transform.position).magnitude < placementDeltaPosition)
             {
-                p.OnObjectPlace(this);
+                chooseHolder = p;
                 return true;
             }
         }
@@ -38,6 +96,11 @@ public class InteractablePlacer : MonoBehaviour
 
     public void Hide()
     {
-        gameObject.SetActive(false);
+        rend.enabled = false;
+    }
+
+    public void Show()
+    {
+        rend.enabled = true;
     }
 }
