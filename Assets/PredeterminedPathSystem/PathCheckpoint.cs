@@ -4,7 +4,6 @@ using System.Linq;
 using PathCreation;
 using PathSystem;
 using Unity.VisualScripting;
-using UnityEditor.Search;
 using UnityEditor.XR;
 using UnityEngine;
 using UnityEngine.Splines;

@@ -4834,7 +4834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8580219084779272315, guid: abe3175d16fa62141b6e6d6c7fa21c42, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.02
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8580219084779272315, guid: abe3175d16fa62141b6e6d6c7fa21c42, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4842,7 +4842,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8580219084779272315, guid: abe3175d16fa62141b6e6d6c7fa21c42, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.31
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8580219084779272315, guid: abe3175d16fa62141b6e6d6c7fa21c42, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13748,7 +13748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7c49711efae6b489866333d934052d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionComplete:
+  missionStatusChanged:
     m_PersistentCalls:
       m_Calls: []
   IsMissionComplete: 0
@@ -19270,7 +19270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7c49711efae6b489866333d934052d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionComplete:
+  missionStatusChanged:
     m_PersistentCalls:
       m_Calls: []
   IsMissionComplete: 0
@@ -24974,7 +24974,7 @@ MonoBehaviour:
   - {fileID: 816011074}
   placementDeltaRotation: 20
   placementDeltaPosition: 0.1
-  rend: {fileID: 0}
+  rend: {fileID: 4012621105004872}
 --- !u!1001 &1051805603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25680,7 +25680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7c49711efae6b489866333d934052d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionComplete:
+  missionStatusChanged:
     m_PersistentCalls:
       m_Calls: []
   IsMissionComplete: 0
@@ -25816,7 +25816,7 @@ MonoBehaviour:
   - {fileID: 816011074}
   placementDeltaRotation: 20
   placementDeltaPosition: 0.1
-  rend: {fileID: 0}
+  rend: {fileID: 1601206709}
 --- !u!1001 &1094299743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37712,6 +37712,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4012621514819990, guid: 3f69af6bac8cc454aa0e1a8cb1d41ac8, type: 3}
   m_PrefabInstance: {fileID: 1601206706}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1601206709 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23000961396246328, guid: 3f69af6bac8cc454aa0e1a8cb1d41ac8, type: 3}
+  m_PrefabInstance: {fileID: 1601206706}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1602542603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38727,7 +38732,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.072976, y: 0.041330997, z: 1.0000002}
-  m_Center: {x: -0.036487803, y: -0.009475593, z: -3.8609405e-10}
+  m_Center: {x: -0.036487803, y: 0.03, z: -3.8609405e-10}
 --- !u!1001 &1631989069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38829,7 +38834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa7c49711efae6b489866333d934052d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missionComplete:
+  missionStatusChanged:
     m_PersistentCalls:
       m_Calls: []
   IsMissionComplete: 0
@@ -42218,7 +42223,7 @@ MonoBehaviour:
   - {fileID: 555364602}
   placementDeltaRotation: 20
   placementDeltaPosition: 0.1
-  rend: {fileID: 0}
+  rend: {fileID: 2078995187}
 --- !u!54 &1730844272
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -51446,6 +51451,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 498088, guid: b7da632ffaf738043bb3faaccede1417, type: 3}
   m_PrefabInstance: {fileID: 2075848096}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &2078995187 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23440120186073994, guid: 346845f0154817c4297d6af7c695b28a, type: 3}
+  m_PrefabInstance: {fileID: 1551926457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2080846076
 GameObject:
   m_ObjectHideFlags: 0
@@ -52889,6 +52899,11 @@ Transform:
 --- !u!4 &4012621105004870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4012621514819990, guid: 3f69af6bac8cc454aa0e1a8cb1d41ac8, type: 3}
+  m_PrefabInstance: {fileID: 1737967824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &4012621105004872 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 23000961396246328, guid: 3f69af6bac8cc454aa0e1a8cb1d41ac8, type: 3}
   m_PrefabInstance: {fileID: 1737967824}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &4156355890816333

@@ -31,7 +31,7 @@ public class AgentStepDetector : MonoBehaviour
             transform.position = hit.point;
         }
     }
-
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (showStepDetection)
@@ -50,7 +50,7 @@ public class AgentStepDetector : MonoBehaviour
             }
         }
     }
-
+#endif
     bool IsStepDetected(out RaycastHit hit)
     {
         hit = new RaycastHit();

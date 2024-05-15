@@ -16,6 +16,6 @@ MonoBehaviour:
   TinyLevelVisual: {fileID: 1802231900875454, guid: 021f214ee24e4ab408fe5fa469da8624, type: 3}
   levels:
   - id: 0
-    asset: {fileID: 102900000, guid: c67bfa08135bc59418ab3416555077e7, type: 3}
+    asset: City-Level1
     look: {fileID: 0}
     name: City Level 1

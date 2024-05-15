@@ -8,7 +8,7 @@ using UnityEngine.AddressableAssets;
 public struct LevelReference
 {
     public int id;
-    public SceneAsset asset;
+    public string asset;
     public Sprite look;
     public string name;
 }
@@ -22,7 +22,7 @@ public class ScriptableWorlds : ScriptableObject
 
     public List<LevelReference> levels;
 
-    public SceneAsset GetSceneByID(int id)
+    public string GetSceneByID(int id)
     {
         foreach (LevelReference level in levels) {
             if (level.id == id) 

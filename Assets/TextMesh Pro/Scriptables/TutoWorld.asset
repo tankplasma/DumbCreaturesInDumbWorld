@@ -16,22 +16,18 @@ MonoBehaviour:
   TinyLevelVisual: {fileID: 130556685989066415, guid: faeb5cfeb13a438438f8b5099b3418d5, type: 3}
   levels:
   - id: 0
-    asset: {fileID: 102900000, guid: 1a04d073a244afd4ba923dcf061aca2b, type: 3}
+    asset: Tuto-Level1
     look: {fileID: 0}
     name: Tuto Intro
   - id: 1
-    asset: {fileID: 102900000, guid: 1a105e71ba408a94f8484f5367323a08, type: 3}
+    asset: Tuto-Level2
     look: {fileID: 0}
     name: Tuto Basics
   - id: 2
-    asset: {fileID: 102900000, guid: f5738a88eddc43d43a1cd5456d8687c7, type: 3}
+    asset: Tuto-Level3
     look: {fileID: 0}
     name: Tuto Path
   - id: 3
-    asset: {fileID: 102900000, guid: ec4ba37207491be49ac08c6a62b881cc, type: 3}
+    asset: Tuto-Level4
     look: {fileID: 0}
     name: tuto interactions
-  - id: 4
-    asset: {fileID: 102900000, guid: 525626ac693eae344942efdca32a8784, type: 3}
-    look: {fileID: 0}
-    name: test level

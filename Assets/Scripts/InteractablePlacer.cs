@@ -88,6 +88,7 @@ public class InteractablePlacer : MonoBehaviour
             if ((p.pos - transform.position).magnitude < placementDeltaPosition)
             {
                 chooseHolder = p;
+                p.OnObjectPlace(this);
                 return true;
             }
         }

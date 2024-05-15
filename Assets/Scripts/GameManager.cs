@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using UnityEditor;
-using UnityEditor.VersionControl;
 using Unity.VisualScripting;
 using System.Linq;
 
@@ -17,8 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     List<ScriptableWorlds> levelManagement;
 
-    [SerializeField]
-    SceneAsset lobbyScene;
+/*    [SerializeField]
+    UnityEditor.SceneAsset lobbyScene;*/
 
     KeyValuePair<ScriptableWorlds, int> currentLevel;
 
@@ -34,7 +33,7 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToLobby()
     {
-        AsyncOperation op = SceneManager.LoadSceneAsync(lobbyScene.name, LoadSceneMode.Single);
+        AsyncOperation op = SceneManager.LoadSceneAsync("Main", LoadSceneMode.Single);
         op.allowSceneActivation = true;
         op.completed += (op) =>
         {
@@ -57,8 +56,7 @@ public class GameManager : MonoBehaviour
         // get lvl and id to load to be able to go to next level
         currentLevel = new KeyValuePair<ScriptableWorlds, int>(lvl, id);
 
-        SceneAsset asset = lvl.GetSceneByID(id);
-        AsyncOperation op = SceneManager.LoadSceneAsync(asset.name, LoadSceneMode.Single);
+        AsyncOperation op = SceneManager.LoadSceneAsync(lvl.GetSceneByID(id), LoadSceneMode.Single);
         op.allowSceneActivation = true;
         op.completed += (op) =>
         {
