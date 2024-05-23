@@ -20,16 +20,24 @@ public class InteractablePlacer : MonoBehaviour
 
     Coroutine PlaceCo;
 
+    Vector3 firstPos;
+
+    PointerEventType type;
+
+    [SerializeField]
+    float maxpos;
+
     private void Start()
     {
         grab = GetComponent<Grabbable>();
-
+        firstPos = transform.position;
         if (grab)
             grab.WhenPointerEventRaised += OnEvent;
     }
 
     private void OnEvent(PointerEvent e)
     {
+        type = e.Type;
         switch (e.Type)
         {
             case PointerEventType.Hover:
@@ -55,6 +63,11 @@ public class InteractablePlacer : MonoBehaviour
 
     private void Update()
     {
+        if (HaveToReplace() && type != PointerEventType.Select)
+        {
+            transform.position = firstPos;
+        }
+
         if (PlaceProcessing())
             Debug.Log("placed");
         else
@@ -103,5 +116,9 @@ public class InteractablePlacer : MonoBehaviour
     public void Show()
     {
         rend.enabled = true;
+    }
+
+    bool HaveToReplace(){
+        return Vector3.Distance(transform.position, firstPos) > maxpos;
     }
 }
