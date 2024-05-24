@@ -27,7 +27,7 @@ public class DisplayDialogue : MonoBehaviour
 
     public void BeginDialogue()
     {
-        isStop = true;
+        isStop = false;
         if (dialogue.Length < 0)
         {
             SetEntity(0, true);
