@@ -27,8 +27,14 @@ public class InteractablePlacer : MonoBehaviour
     [SerializeField]
     float maxpos;
 
+    Rigidbody rb;
+
+    [SerializeField]
+    bool meshDisapear = true;
+
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         grab = GetComponent<Grabbable>();
         firstPos = transform.position;
         if (grab)
@@ -49,6 +55,7 @@ public class InteractablePlacer : MonoBehaviour
                 break;
             case PointerEventType.Unselect:
                 if(PlaceCo != null)StopCoroutine(PlaceCo);
+                rb.isKinematic = true;
                 if (chooseHolder)
                     chooseHolder.OnObjectPlace(this);
                 break;
@@ -63,15 +70,15 @@ public class InteractablePlacer : MonoBehaviour
 
     private void Update()
     {
-        if (HaveToReplace() && type != PointerEventType.Select)
+/*        if (HaveToReplace() && type != PointerEventType.Select)
         {
             transform.position = firstPos;
-        }
+        }*/
 
-        if (PlaceProcessing())
-            Debug.Log("placed");
-        else
-            return;
+        /*if (PlaceProcessing())
+            Debug.Log("placed");*/
+/*        else
+            return;*/
     }
 
     IEnumerator PlaceObect()
@@ -82,6 +89,8 @@ public class InteractablePlacer : MonoBehaviour
             chooseHolder = null;
         }
         
+        rb.isKinematic = false;
+
         while (true)
         {
             if (PlaceProcessing())
@@ -101,21 +110,23 @@ public class InteractablePlacer : MonoBehaviour
             if ((p.pos - transform.position).magnitude < placementDeltaPosition)
             {
                 chooseHolder = p;
-                p.OnObjectPlace(this);
+                //p.OnObjectPlace(this);
                 return true;
             }
+            else
+                chooseHolder = null;
         }
         return false;
     }
 
     public void Hide()
     {
-        rend.enabled = false;
+        if(meshDisapear) rend.enabled = false;
     }
 
     public void Show()
     {
-        rend.enabled = true;
+        if (meshDisapear) rend.enabled = true;
     }
 
     bool HaveToReplace(){

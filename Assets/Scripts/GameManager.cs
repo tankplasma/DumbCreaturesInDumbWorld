@@ -72,4 +72,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ReloadLevel()
+    {
+        LoadSceneByID(currentLevel.Value, currentLevel.Key);
+    }
+
 }

@@ -13,4 +13,9 @@ public class EndMenu : MonoBehaviour
     {
         GameManager.Instance.GoNextLevel();
     }
+
+    public void Retry()
+    {
+        GameManager.Instance.ReloadLevel();
+    }
 }

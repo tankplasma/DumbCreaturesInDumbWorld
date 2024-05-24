@@ -26,6 +26,7 @@ public class MissionChecker : MonoBehaviour
     {
         if (AreAllMissionsComplete())
         {
+            Debug.Log("mission are completes");
             missionsWasComplete = true;
             MissionComplete.Invoke();
         }
